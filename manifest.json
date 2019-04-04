@@ -1,0 +1,12 @@
+{
+  "name": "Epoch",
+  "version": "1.0.0",
+  "description": "Deceptively simple and beautiful new-tab page.",
+  "chrome_url_overrides" : {
+    "newtab": "dist/index.html"
+  },
+  "permissions": [
+    "bookmarks"
+  ],
+  "manifest_version": 2
+}
