@@ -4,13 +4,14 @@
   "description": "A (new) tab page.",
   "author": "Michael Bullington <mikebullingtn@gmail.com>",
   "scripts": {
-    "start": "parcel watch web/index.html --public-url . --no-source-maps",
+    "start": "parcel watch web/index.html --public-url . --no-source-maps --no-cache",
     "build": "parcel build web/index.html --public-url . --no-source-maps"
   },
   "dependencies": {
+    "@material/icon-button": "^1.1.0",
     "gamblers-dice": "^1.0.1",
     "localforage": "^1.7.3",
-    "node-vibrant": "^3.1.1",
+    "node-vibrant": "https://github.com/mbullington/node-vibrant.git",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
@@ -20,6 +21,6 @@
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.12.3",
     "tsconfig-palmerhq": "^1.0.2",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.5"
   }
 }

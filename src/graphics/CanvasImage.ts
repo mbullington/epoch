@@ -36,8 +36,8 @@ export default class CanvasImage {
     return this.context.getImageData(0, 0, this.width, this.height);
   }
 
-  toDataUrl(): string {
-    return this.canvas.toDataURL("image/webp", 0.92);
+  toDataUrl(format: string = "webp"): string {
+    return this.canvas.toDataURL(`image/${format}`, 0.92);
   }
 
   cleanup(): HTMLCanvasElement | null {
@@ -48,9 +48,9 @@ export default class CanvasImage {
   }
 }
 
-export function toDataUrl(image: HTMLImageElement): string {
+export function toDataUrl(image: HTMLImageElement, format?: string): string {
   const canvas = new CanvasImage(image);
-  const str = canvas.toDataUrl();
+  const str = canvas.toDataUrl(format);
   canvas.cleanup();
 
   return str;

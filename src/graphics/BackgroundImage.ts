@@ -1,5 +1,5 @@
 
-import loadImage from "../util/loadImage";
+import loadImage from "./loadImage";
 import {toDataUrl} from "./CanvasImage";
 
 // Global scope for node-vibrant.

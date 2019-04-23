@@ -9,6 +9,8 @@ import onDocumentReady from "./util/onDocumentReady";
 
 const globalKey = VersionedState.createGlobalKey();
 
+let extras: typeof import("./entry_extras") | undefined;
+
 onDocumentReady()
 .then(async () => {
   const nodes = {
@@ -63,6 +65,10 @@ onDocumentReady()
       // Set text style.
       timeList.forEach(el => (<HTMLElement>el).style.color = textColor);
       dividerChildList.forEach(el => (<HTMLElement>el).style.backgroundColor = textColor);  
+
+      if (extras != null) {
+        extras.updateColors(textColor);
+      }
     }
   });
 
@@ -99,22 +105,9 @@ onDocumentReady()
   } catch (e) {
     console.log(e);
   }
-})
-.then(() => {
+
   // Load extras bundle (things like settings).
-  // import("./entry_extras").then(module => module.main());
-
-  // @ts-ignore
-  /*
-  require.ensure(["./entry_extras"],
-    (require: Function) => {
-      console.log("loaded extras!");
-      require("./entry_extras");
-    },
-    (error: any) => {
-
-    },
-    "extras"
-  );
-  */
+  extras = await import("./entry_extras");
+  extras.extras(store.getState().background.dataUrl || '');
+  extras.updateColors(store.getState().background.textColor || "transparent");
 });

@@ -3,7 +3,7 @@
   <head>
     <title>New Tab</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700|Material+Icons" rel="stylesheet">
   </head>
   <body>
     <div class="background">
@@ -16,8 +16,14 @@
       </div>
       <div class="minutes time">01</div>
 
-      <script src="../../node-vibrant/dist/vibrant.worker.js"></script>
+      <script src="../node_modules/node-vibrant/dist/vibrant.worker.js"></script>
       <script src="../src/entry_main.ts"></script>
+    </div>
+
+    <div class="buttons">
+      <button id="heart" title="Favorite" class="mdc-icon-button material-icons">favorite_border</button>
+      <button id="download" title="Download" class="mdc-icon-button material-icons">save_alt</button>
+      <button id="settings" title="Settings" class="mdc-icon-button material-icons">more_vert</button>
     </div>
   </body>
 </html>
