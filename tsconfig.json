@@ -1,13 +1,13 @@
 {
+  "extends": "./node_modules/tsconfig-palmerhq/tsconfig.json",
   "compilerOptions": {
-    "target": "es6",
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "jsx": "react",
+    "lib": ["dom", "es2015"],
     "baseUrl": ".",
     "paths": {
       "util/*": ["src/util/*"]
-    }
+    },
+    "types": ["node-vibrant"],
+    "esModuleInterop": true
   },
   "include": [
     "src/**/*"

@@ -1,84 +1,73 @@
 // @ts-ignore
 import "../styles/main.scss";
 
-import resolveImmediate from "util/resolveImmediate";
+import createStore from "./store";
+import State from "./store/state";
+import VersionedState from "./store/util/VersionedState";
 
-import { actions, store } from "./state";
-import { State } from "./state/structs";
-import { wasHydrated } from "./state/util/hydrate";
-import { SmartObject } from "./state/util/smartObjects";
+import onDocumentReady from "./util/onDocumentReady";
 
-function onLoad() {
-  const background = <HTMLElement>document.querySelector(".background")!;
-  const container = <HTMLElement>document.querySelector(".container")!;
-  
+const globalKey = VersionedState.createGlobalKey();
+
+onDocumentReady()
+.then(async () => {
+  const nodes = {
+    background: <HTMLElement>document.querySelector(".background")!,
+    container: <HTMLElement>document.querySelector(".container")!,
+    hours: <HTMLElement>document.querySelector(".hours")!,
+    minutes: <HTMLElement>document.querySelector(".minutes")!
+  };
+
   const dividerChildList = document.querySelectorAll(".divider-child")!;
   const timeList = document.querySelectorAll(".time")!;
 
-  const divHours = <HTMLElement>document.querySelector(".hours")!;
-  const divMinutes = <HTMLElement>document.querySelector(".minutes")!;
-
-  const randomKey = SmartObject.generateKey();
+  const [store, actions] = await createStore();
 
   store.subscribe(() => {
     const state: State = store.getState();
 
-    if (SmartObject.changed(state.time, randomKey)) {
+    if (state.time.hasChanged(globalKey)) {
       const { isEveryOtherTick, hours, minutes } = state.time;
 
-      // update divider
-
+      // Enable/disable divider.
       dividerChildList.forEach(el => {
-        // add dimming
-        if (!!isEveryOtherTick && !el.classList.contains("dim")) {
+        if (isEveryOtherTick && !el.classList.contains("dim")) {
           el.classList.add("dim");
-        }
-      
-        // disable dimming
-        if (!isEveryOtherTick && el.classList.contains("dim")) {
+        } else if (!isEveryOtherTick && el.classList.contains("dim")) {
           el.classList.remove("dim");
         }
       });
 
-      // update clock
-  
-      divHours.innerHTML = hours;
-      divMinutes.innerHTML = minutes;
+      // Update clock.
+      nodes.hours.innerHTML = hours;
+      nodes.minutes.innerHTML = minutes;
     }
 
-    if (SmartObject.changed(state.background, randomKey) && !state.background.preload) {
-      const { dataUrl, gradient, shadows, textColor } = state.background;
+    if (state.background.hasChanged(globalKey) && !state.background.preload) {
+      const {
+        dataUrl = "",
+        gradient = ["transparent", "transparent"],
+        shadows = ["transparent", "transparent"],
+        textColor = "transparent"
+      } = state.background;
 
-      // set background image
-      background.style.backgroundImage = `url(${dataUrl})`;
+      // Set background image.
+      nodes.background.style.backgroundImage = `url(${dataUrl})`;
       document.body.style.opacity = "1";
 
-      // set container style
+      // Set container style.
+      nodes.container.style.setProperty("--gradient-main", gradient[0]);
+      nodes.container.style.setProperty("--gradient-secondary", gradient[1]);
+      nodes.container.style.boxShadow = `0 4px 32px ${shadows[0]}, 0 32px 128px ${shadows[1]}`;
 
-      container.style.setProperty("--gradient-main", gradient[0]);
-      container.style.setProperty("--gradient-secondary", gradient[1]);
-
-      container.style.boxShadow = `0 4px 32px ${shadows[0]}, 0 32px 128px ${shadows[1]}`;
-
-      // set text style
-
+      // Set text style.
       timeList.forEach(el => (<HTMLElement>el).style.color = textColor);
       dividerChildList.forEach(el => (<HTMLElement>el).style.backgroundColor = textColor);  
     }
   });
 
-  resolveImmediate(async () => {
-    try {
-      if (!wasHydrated(store.getState().background)) {
-        await actions.fetchBackground();
-      }
-  
-      // prefetch for next time
-      await actions.fetchBackground(true);
-    } catch (e) {
-      console.log(e);
-    }
-  });
+  actions.tickEveryMinute();
+  actions.tickEverySecond();
 
   if ("registerProperty" in CSS) {
     // @ts-ignore
@@ -98,16 +87,34 @@ function onLoad() {
     });
   }
 
-  actions.tickEveryMinute();
-  actions.tickEverySecond();
+  try {
+    if (!store.getState().background.dataUrl) {
+      // Didn't get it from previous session, fetch
+      // it now.
+      await actions.fetchBackground();
+    }
 
-  // load extras
-  import("./entry_extras").then(module => module.main());
+    // Prefetch next background.
+    actions.fetchBackground(true);
+  } catch (e) {
+    console.log(e);
+  }
+})
+.then(() => {
+  // Load extras bundle (things like settings).
+  // import("./entry_extras").then(module => module.main());
 
   // @ts-ignore
-  require.ensure(["./entry_extras"], function(require) { console.log("loaded extras!"); require("./entry_extras"); }, error => {}, "extras");
-}
+  /*
+  require.ensure(["./entry_extras"],
+    (require: Function) => {
+      console.log("loaded extras!");
+      require("./entry_extras");
+    },
+    (error: any) => {
 
-window.addEventListener("load", () => {
-  resolveImmediate(onLoad);
+    },
+    "extras"
+  );
+  */
 });

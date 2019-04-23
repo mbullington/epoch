@@ -1,51 +1,49 @@
-import { Completer, resolveImmediate } from "../util/okComputer";
 
-import Palette from "./Palette";
-import { T_Color } from "./structs";
+import loadImage from "../util/loadImage";
+import {toDataUrl} from "./CanvasImage";
+
+// Global scope for node-vibrant.
+declare var Vibrant: typeof import("node-vibrant/lib/browser.worker");
+type Swatch = import("node-vibrant/lib/color").Swatch;
+
+const SRC = "https://source.unsplash.com/random/1600x900";
 
 // TODO: navigator.onLine
 export default class BackgroundImage {
   dataUrl: string;
 
-  vibrant: T_Color;
-  muted: T_Color;
-  darkVibrant: T_Color;
+  vibrant: Swatch;
+  muted: Swatch;
+  darkVibrant: Swatch;
 
-  static fetch(): Promise<BackgroundImage> {
-    const completer = new Completer<BackgroundImage>();
+  constructor(dataUrl: string, vibrant: Swatch, muted: Swatch, darkVibrant: Swatch) {
+    this.dataUrl = dataUrl;
 
-    const img = document.createElement("img");
-    img.crossOrigin = "Anonymous";
-    img.src = "https://source.unsplash.com/random/1600x900";
-    
-    img.addEventListener("load", _ => {
-      resolveImmediate(() => {
-        const prof = Date.now();
-    
-        const vibrantObj = new Palette(img);
-        const swatches = vibrantObj.swatches(["Vibrant", "Muted", "DarkVibrant"]);
-  
-        console.log(Date.now() - prof);
-        const bg: BackgroundImage = new BackgroundImage();
+    this.vibrant = vibrant;
+    this.muted = muted;
+    this.darkVibrant = darkVibrant;
+  }
 
-        bg.vibrant = swatches.Vibrant.getRgb();
-        bg.muted = swatches.Muted.getRgb();       
-        bg.darkVibrant = swatches.DarkVibrant.getRgb();
-  
-        try {
-          bg.dataUrl = vibrantObj.image!.toDataUrl();
-  
-          console.log("fetch complete"); 
-          completer.resolve(bg);
-        } catch(e) {
-          completer.reject(e);
-        } finally {
-          vibrantObj.image!.cleanup();
-        }
-      });
-    });
+  static async fetch(): Promise<BackgroundImage> {
+    const img = await loadImage(SRC);
 
-    return completer.promise;
+    const vibrant = Vibrant
+        .from(img)
+        .useQuantizer(Vibrant.Quantizer.WebWorker);
+
+    // Start web worker.
+    const palettePromise = vibrant.getPalette();
+    // Then convert to data URL on main thread.
+    const dataUrl = toDataUrl(img);
+
+    const palette = await palettePromise;
+
+    return new BackgroundImage(
+      dataUrl,
+      palette.Vibrant!,
+      palette.Muted!,
+      palette.DarkVibrant!
+    );
   }
 
   getTextColor(): string {
@@ -57,45 +55,45 @@ export default class BackgroundImage {
 
   getGradientColors(): [string, string] {
     return [
-      this.toCss(this.vibrant),
-      this.toCss(this.muted)
+      this.toCss(this.vibrant.getRgb()),
+      this.toCss(this.muted.getRgb())
     ];
   }
 
   getShadowColors(): [string, string] {
     const brightness = this.getBrightness(this.darkVibrant);
-    const swatch = brightness > 0 ?
+    const rgb = brightness > 0 ?
         this.darken(this.darkVibrant, 0.4) :
-        this.darkVibrant;
-
+        this.darkVibrant.getRgb();
+    
     return [
-      this.toCssAlpha(swatch, 0.3),
-      this.toCssAlpha(swatch, 0.2)
+      this.toCssAlpha(rgb, 0.3),
+      this.toCssAlpha(rgb, 0.2)
     ];
   }
 
   // css helpers
 
-  toCss(rgb: T_Color): string {
+  toCss(rgb: [number, number, number]): string {
     const [ r, g, b ] = rgb;
     return `rgb(${r}, ${g}, ${b})`;
   }
   
-  toCssAlpha(rgb: T_Color, a: number): string {
+  toCssAlpha(rgb: [number, number, number], a: number): string {
     const [ r, g, b ] = rgb;
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
   
   // color helpers
   
-  getBrightness(swatch: T_Color): number {
+  getBrightness(swatch: Swatch): number {
     const BRIGHTNESS_THRESHOLD = 235;
-    const [r, g, b] = swatch;
+    const [r, g, b] = swatch.getRgb();
     
     return (0.299*r + 0.587*g + 0.114*b) - BRIGHTNESS_THRESHOLD;
   }
   
-  darken(s: T_Color, percent: number): T_Color {
+  darken(s: Swatch, percent: number): [number, number, number] {
     return [
       s[0] - s[0] * percent,
       s[1] - s[1] * percent,
