@@ -47,4 +47,8 @@ export default class VersionedState {
     Object.assign(this, newState);
     this[COUNT]++;
   }
+
+  clone(): this {
+    return {...this};
+  }
 }

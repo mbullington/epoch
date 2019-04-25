@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/symbol-observable/es/ponyfill.js":[function(require,module,exports) {
+},{"./fonts/Poppins_700.woff2":[["Poppins_700.246d23ba.woff2","../styles/fonts/Poppins_700.woff2"],"../styles/fonts/Poppins_700.woff2"],"./fonts/Poppins_700.woff":[["Poppins_700.613afa9f.woff","../styles/fonts/Poppins_700.woff"],"../styles/fonts/Poppins_700.woff"],"./fonts/Poppins_700.eot":[["Poppins_700.287948cb.eot","../styles/fonts/Poppins_700.eot"],"../styles/fonts/Poppins_700.eot"],"./fonts/Poppins_700.svg":[["Poppins_700.93846cd5.svg","../styles/fonts/Poppins_700.svg"],"../styles/fonts/Poppins_700.svg"],"./fonts/Poppins_700.ttf":[["Poppins_700.1b60fc41.ttf","../styles/fonts/Poppins_700.ttf"],"../styles/fonts/Poppins_700.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/symbol-observable/es/ponyfill.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3848,7 +3848,7 @@ var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, gene
 var __generator = this && this.__generator || function (thisArg, body) {
   var _ = {
     label: 0,
-    sent: function () {
+    sent: function sent() {
       if (t[0] & 1) throw t[1];
       return t[1];
     },
@@ -3876,74 +3876,76 @@ var __generator = this && this.__generator || function (thisArg, body) {
   function step(op) {
     if (f) throw new TypeError("Generator is already executing.");
 
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
 
-      switch (op[0]) {
-        case 0:
-        case 1:
-          t = op;
-          break;
-
-        case 4:
-          _.label++;
-          return {
-            value: op[1],
-            done: false
-          };
-
-        case 5:
-          _.label++;
-          y = op[1];
-          op = [0];
-          continue;
-
-        case 7:
-          op = _.ops.pop();
-
-          _.trys.pop();
-
-          continue;
-
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-            _ = 0;
-            continue;
-          }
-
-          if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-            _.label = op[1];
-            break;
-          }
-
-          if (op[0] === 6 && _.label < t[1]) {
-            _.label = t[1];
+        switch (op[0]) {
+          case 0:
+          case 1:
             t = op;
             break;
-          }
 
-          if (t && _.label < t[2]) {
-            _.label = t[2];
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
 
-            _.ops.push(op);
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
 
-            break;
-          }
+          case 7:
+            op = _.ops.pop();
 
-          if (t[2]) _.ops.pop();
+            _.trys.pop();
 
-          _.trys.pop();
+            continue;
 
-          continue;
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
       }
-
-      op = body.call(thisArg, _);
-    } catch (e) {
-      op = [6, e];
-      y = 0;
-    } finally {
-      f = t = 0;
     }
 
     if (op[0] & 5) throw op[1];
@@ -4017,6 +4019,12 @@ function () {
     return [this.toCss(this.vibrant.getRgb()), this.toCss(this.muted.getRgb())];
   };
 
+  BackgroundImage.prototype.getShadowBaseColor = function () {
+    var brightness = this.getBrightness(this.darkVibrant);
+    var rgb = brightness > 0 ? this.darken(this.darkVibrant, 0.4) : this.darkVibrant.getRgb();
+    return this.toCss(rgb);
+  };
+
   BackgroundImage.prototype.getShadowColors = function () {
     var brightness = this.getBrightness(this.darkVibrant);
     var rgb = brightness > 0 ? this.darken(this.darkVibrant, 0.4) : this.darkVibrant.getRgb();
@@ -4028,14 +4036,14 @@ function () {
     var r = rgb[0],
         g = rgb[1],
         b = rgb[2];
-    return "rgb(" + r + ", " + g + ", " + b + ")";
+    return "rgb(" + Math.round(r) + ", " + Math.round(g) + ", " + Math.round(b) + ")";
   };
 
   BackgroundImage.prototype.toCssAlpha = function (rgb, a) {
     var r = rgb[0],
         g = rgb[1],
         b = rgb[2];
-    return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+    return "rgba(" + Math.round(r) + ", " + Math.round(g) + ", " + Math.round(b) + ", " + a + ")";
   }; // color helpers
 
 
@@ -4058,7 +4066,7 @@ function () {
 }();
 
 exports["default"] = BackgroundImage;
-},{"./loadImage":"../src/graphics/loadImage.ts","./CanvasImage":"../src/graphics/CanvasImage.ts"}],"../src/store/util/timing.ts":[function(require,module,exports) {
+},{"./loadImage":"../src/graphics/loadImage.ts","./CanvasImage":"../src/graphics/CanvasImage.ts"}],"../src/store/timing.ts":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -4145,7 +4153,7 @@ var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, gene
 var __generator = this && this.__generator || function (thisArg, body) {
   var _ = {
     label: 0,
-    sent: function () {
+    sent: function sent() {
       if (t[0] & 1) throw t[1];
       return t[1];
     },
@@ -4173,74 +4181,76 @@ var __generator = this && this.__generator || function (thisArg, body) {
   function step(op) {
     if (f) throw new TypeError("Generator is already executing.");
 
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
 
-      switch (op[0]) {
-        case 0:
-        case 1:
-          t = op;
-          break;
-
-        case 4:
-          _.label++;
-          return {
-            value: op[1],
-            done: false
-          };
-
-        case 5:
-          _.label++;
-          y = op[1];
-          op = [0];
-          continue;
-
-        case 7:
-          op = _.ops.pop();
-
-          _.trys.pop();
-
-          continue;
-
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-            _ = 0;
-            continue;
-          }
-
-          if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-            _.label = op[1];
-            break;
-          }
-
-          if (op[0] === 6 && _.label < t[1]) {
-            _.label = t[1];
+        switch (op[0]) {
+          case 0:
+          case 1:
             t = op;
             break;
-          }
 
-          if (t && _.label < t[2]) {
-            _.label = t[2];
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
 
-            _.ops.push(op);
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
 
-            break;
-          }
+          case 7:
+            op = _.ops.pop();
 
-          if (t[2]) _.ops.pop();
+            _.trys.pop();
 
-          _.trys.pop();
+            continue;
 
-          continue;
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
       }
-
-      op = body.call(thisArg, _);
-    } catch (e) {
-      op = [6, e];
-      y = 0;
-    } finally {
-      f = t = 0;
     }
 
     if (op[0] & 5) throw op[1];
@@ -4263,7 +4273,7 @@ var redux_1 = require("redux");
 
 var BackgroundImage_1 = __importDefault(require("../graphics/BackgroundImage"));
 
-var timing_1 = require("./util/timing");
+var timing_1 = require("./timing");
 
 var ActionType;
 
@@ -4281,7 +4291,7 @@ var resetSecondTick = false;
 var resetMinuteTick = false;
 exports.actions = {
   // Thunks for time tracking.
-  tickEverySecond: function () {
+  tickEverySecond: function tickEverySecond() {
     return function (dispatch) {
       var cancel = timing_1.everySecond(function () {
         if (resetSecondTick) {
@@ -4299,7 +4309,7 @@ exports.actions = {
       });
     };
   },
-  tickEveryMinute: function () {
+  tickEveryMinute: function tickEveryMinute() {
     return function (dispatch) {
       var cancel = timing_1.everyMinute(function () {
         if (resetMinuteTick) {
@@ -4317,20 +4327,20 @@ exports.actions = {
       });
     };
   },
-  endTickEverySecond: function () {
+  endTickEverySecond: function endTickEverySecond() {
     resetSecondTick = true;
     return {
       type: ActionType.RESET_EVERY_SECOND
     };
   },
-  endTickEveryMinute: function () {
+  endTickEveryMinute: function endTickEveryMinute() {
     resetMinuteTick = true;
     return {
       type: ActionType.RESET_EVERY_MINUTE
     };
   },
   // Thunk for fetching the background.
-  fetchBackground: function (preload) {
+  fetchBackground: function fetchBackground(preload) {
     var _this = this;
 
     return function (dispatch) {
@@ -4351,6 +4361,7 @@ exports.actions = {
                 type: ActionType.UPDATE_BACKGROUND,
                 dataUrl: bg.dataUrl,
                 gradient: bg.getGradientColors(),
+                shadowBase: bg.getShadowBaseColor(),
                 shadows: bg.getShadowColors(),
                 textColor: bg.getTextColor(),
                 preload: preload
@@ -4375,8 +4386,24 @@ function createActions(store) {
 
 exports["default"] = createActions;
 ;
-},{"redux":"../node_modules/redux/es/redux.js","../graphics/BackgroundImage":"../src/graphics/BackgroundImage.ts","./util/timing":"../src/store/util/timing.ts"}],"../src/store/util/VersionedState.ts":[function(require,module,exports) {
+},{"redux":"../node_modules/redux/es/redux.js","../graphics/BackgroundImage":"../src/graphics/BackgroundImage.ts","./timing":"../src/store/timing.ts"}],"../src/store/util/VersionedState.ts":[function(require,module,exports) {
 "use strict";
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
 
 exports.__esModule = true;
 
@@ -4429,6 +4456,10 @@ function () {
     this[COUNT]++;
   };
 
+  VersionedState.prototype.clone = function () {
+    return __assign({}, this);
+  };
+
   return VersionedState;
 }();
 
@@ -4438,20 +4469,22 @@ exports["default"] = VersionedState;
 "use strict";
 
 var __extends = this && this.__extends || function () {
-  var extendStatics = function (d, b) {
-    extendStatics = Object.setPrototypeOf || {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
       __proto__: []
     } instanceof Array && function (d, b) {
       d.__proto__ = b;
     } || function (d, b) {
-      for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
     };
 
-    return extendStatics(d, b);
+    return _extendStatics(d, b);
   };
 
   return function (d, b) {
-    extendStatics(d, b);
+    _extendStatics(d, b);
 
     function __() {
       this.constructor = d;
@@ -4511,7 +4544,9 @@ var __assign = this && this.__assign || function () {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
       s = arguments[i];
 
-      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
     }
 
     return t;
@@ -4538,7 +4573,7 @@ function createReducer(object) {
 }
 
 exports["default"] = createReducer;
-},{}],"../src/store/util/format.ts":[function(require,module,exports) {
+},{}],"../src/store/format.ts":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -4590,7 +4625,7 @@ var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, gene
 var __generator = this && this.__generator || function (thisArg, body) {
   var _ = {
     label: 0,
-    sent: function () {
+    sent: function sent() {
       if (t[0] & 1) throw t[1];
       return t[1];
     },
@@ -4618,74 +4653,76 @@ var __generator = this && this.__generator || function (thisArg, body) {
   function step(op) {
     if (f) throw new TypeError("Generator is already executing.");
 
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
 
-      switch (op[0]) {
-        case 0:
-        case 1:
-          t = op;
-          break;
-
-        case 4:
-          _.label++;
-          return {
-            value: op[1],
-            done: false
-          };
-
-        case 5:
-          _.label++;
-          y = op[1];
-          op = [0];
-          continue;
-
-        case 7:
-          op = _.ops.pop();
-
-          _.trys.pop();
-
-          continue;
-
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-            _ = 0;
-            continue;
-          }
-
-          if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-            _.label = op[1];
-            break;
-          }
-
-          if (op[0] === 6 && _.label < t[1]) {
-            _.label = t[1];
+        switch (op[0]) {
+          case 0:
+          case 1:
             t = op;
             break;
-          }
 
-          if (t && _.label < t[2]) {
-            _.label = t[2];
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
 
-            _.ops.push(op);
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
 
-            break;
-          }
+          case 7:
+            op = _.ops.pop();
 
-          if (t[2]) _.ops.pop();
+            _.trys.pop();
 
-          _.trys.pop();
+            continue;
 
-          continue;
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
       }
-
-      op = body.call(thisArg, _);
-    } catch (e) {
-      op = [6, e];
-      y = 0;
-    } finally {
-      f = t = 0;
     }
 
     if (op[0] & 5) throw op[1];
@@ -4705,7 +4742,9 @@ var __importDefault = this && this.__importDefault || function (mod) {
 var __importStar = this && this.__importStar || function (mod) {
   if (mod && mod.__esModule) return mod;
   var result = {};
-  if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  if (mod != null) for (var k in mod) {
+    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  }
   result["default"] = mod;
   return result;
 };
@@ -4728,7 +4767,7 @@ var VersionedState_1 = __importDefault(require("./util/VersionedState"));
 
 var createReducer_1 = __importDefault(require("./util/createReducer"));
 
-var format_1 = require("./util/format");
+var format_1 = require("./format");
 
 var reducerObj = (_a = {}, // time
 _a[actions_1.ActionType.TICK_EVERY_SECOND] = function (state) {
@@ -4753,6 +4792,7 @@ _a[actions_1.ActionType.UPDATE_BACKGROUND] = function (state, action) {
   state.background.setState({
     dataUrl: action.dataUrl,
     gradient: action.gradient,
+    shadowBase: action.shadowBase,
     shadows: action.shadows,
     textColor: action.textColor,
     preload: action.preload
@@ -4835,7 +4875,7 @@ function default_1() {
 }
 
 exports["default"] = default_1;
-},{"redux":"../node_modules/redux/es/redux.js","redux-thunk":"../node_modules/redux-thunk/es/index.js","localforage":"../node_modules/localforage/dist/localforage.js","./actions":"../src/store/actions.ts","./state":"../src/store/state.ts","./util/VersionedState":"../src/store/util/VersionedState.ts","./util/createReducer":"../src/store/util/createReducer.ts","./util/format":"../src/store/util/format.ts"}],"../src/util/onDocumentReady.ts":[function(require,module,exports) {
+},{"redux":"../node_modules/redux/es/redux.js","redux-thunk":"../node_modules/redux-thunk/es/index.js","localforage":"../node_modules/localforage/dist/localforage.js","./actions":"../src/store/actions.ts","./state":"../src/store/state.ts","./util/VersionedState":"../src/store/util/VersionedState.ts","./util/createReducer":"../src/store/util/createReducer.ts","./format":"../src/store/format.ts"}],"../src/util/onDocumentReady.ts":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -4854,7 +4894,520 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/@material/ripple/util.js":[function(require,module,exports) {
+},{"./fonts/Space_Mono.woff2":[["Space_Mono.68c10213.woff2","../styles/fonts/Space_Mono.woff2"],"../styles/fonts/Space_Mono.woff2"],"./fonts/Space_Mono.woff":[["Space_Mono.2e6d95b2.woff","../styles/fonts/Space_Mono.woff"],"../styles/fonts/Space_Mono.woff"],"./fonts/Space_Mono.eot":[["Space_Mono.cab9e149.eot","../styles/fonts/Space_Mono.eot"],"../styles/fonts/Space_Mono.eot"],"./fonts/Space_Mono.svg":[["Space_Mono.1a7b4644.svg","../styles/fonts/Space_Mono.svg"],"../styles/fonts/Space_Mono.svg"],"./fonts/Space_Mono.ttf":[["Space_Mono.5d3c4d25.ttf","../styles/fonts/Space_Mono.ttf"],"../styles/fonts/Space_Mono.ttf"],"./fonts/Material_Icons.woff2":[["Material_Icons.397338f9.woff2","../styles/fonts/Material_Icons.woff2"],"../styles/fonts/Material_Icons.woff2"],"./fonts/Material_Icons.woff":[["Material_Icons.962d52e8.woff","../styles/fonts/Material_Icons.woff"],"../styles/fonts/Material_Icons.woff"],"./fonts/Material_Icons.eot":[["Material_Icons.7350c468.eot","../styles/fonts/Material_Icons.eot"],"../styles/fonts/Material_Icons.eot"],"./fonts/Material_Icons.svg":[["Material_Icons.c84246ce.svg","../styles/fonts/Material_Icons.svg"],"../styles/fonts/Material_Icons.svg"],"./fonts/Material_Icons.ttf":[["Material_Icons.b67ab1ba.ttf","../styles/fonts/Material_Icons.ttf"],"../styles/fonts/Material_Icons.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/preact/dist/preact.module.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.render = j;
+exports.hydrate = z;
+exports.h = exports.createElement = s;
+exports.Fragment = v;
+exports.createRef = h;
+exports.Component = p;
+exports.cloneElement = D;
+exports.createContext = H;
+exports.toChildArray = g;
+exports.options = void 0;
+var l,
+    n,
+    u,
+    i,
+    t,
+    r = {},
+    e = [],
+    f = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|^--/i;
+exports.options = l;
+
+function o(l, n) {
+  for (var u in n) l[u] = n[u];
+
+  return l;
+}
+
+function c(l) {
+  var n = l.parentNode;
+  n && n.removeChild(l);
+}
+
+function s(l, n, u) {
+  var i,
+      t,
+      r,
+      e,
+      f = arguments;
+  if (null == n && (n = {}), arguments.length > 3) for (u = [u], i = 3; i < arguments.length; i++) u.push(f[i]);
+  if (null != u && (n.children = u), null != l && null != l.defaultProps) for (t in l.defaultProps) void 0 === n[t] && (n[t] = l.defaultProps[t]);
+  return (r = n.ref) && delete n.ref, (e = n.key) && delete n.key, a(l, n, null, e, r);
+}
+
+function a(n, u, i, t, r) {
+  var e = {
+    type: n,
+    props: u,
+    text: i,
+    key: t,
+    ref: r,
+    __k: null,
+    __e: null,
+    l: null,
+    __c: null
+  };
+  return l.vnode && l.vnode(e), e;
+}
+
+function h() {
+  return {};
+}
+
+function v() {}
+
+function y(l) {
+  if (null == l || "boolean" == typeof l) return null;
+  if ("string" == typeof l || "number" == typeof l) return a(null, null, l, null, null);
+  if (Array.isArray(l)) return s(v, null, l);
+
+  if (null != l.__e) {
+    var n = a(l.type, l.props, l.text, l.key, null);
+    return n.__e = l.__e, n;
+  }
+
+  return l;
+}
+
+function p(l, n) {
+  this.props = l, this.context = n;
+}
+
+function d(i) {
+  !i.__d && (i.__d = !0) && 1 === n.push(i) && (l.debounceRendering || u)(m);
+}
+
+function m() {
+  var l;
+
+  for (n.sort(function (l, n) {
+    return n.__b - l.__b;
+  }); l = n.pop();) l.__d && l.forceUpdate(!1);
+}
+
+function w(l, n, u, i, t, f, o, s, a) {
+  var h,
+      p,
+      d,
+      m,
+      w,
+      k,
+      b,
+      x,
+      A,
+      C,
+      N = n.__k || g(n.props.children, n.__k = [], y, !0),
+      T = null != u && u != r && u.__k || e,
+      $ = T.length;
+  if (a == r) if (a = null, null != f) {
+    for (p = 0; p < f.length; p++) if (null != f[p]) {
+      a = f[p];
+      break;
+    }
+  } else for (p = 0; p < $; p++) if (T[p] && T[p].__e) {
+    a = T[p].__e;
+    break;
+  }
+
+  for (p = 0; p < N.length; p++) {
+    if (h = N[p] = y(N[p]), k = w = null, m = T[p], null != h) if (null === m || null != m && (null == h.key && null == m.key ? h.type === m.type : h.key === m.key)) w = p;else for (d = 0; d < $; d++) if (null != (m = T[d]) && (null == h.key && null == m.key ? h.type === m.type : h.key === m.key)) {
+      w = d;
+      break;
+    }
+
+    if (null != w && (k = T[w], T[w] = void 0), x = null != a && a.nextSibling, b = _(null == k ? null : k.__e, l, h, k, i, t, f, o, s, null, a), null != h && null != b) {
+      if (C = document.activeElement, null != h.l) b = h.l;else if (f == k || b != a || null == b.parentNode) l: if (null == a || a.parentNode !== l) l.appendChild(b);else {
+        for (A = a, d = 0; (A = A.nextSibling) && d++ < $ / 2;) if (A === b) break l;
+
+        l.insertBefore(b, a);
+      }
+      C !== document.activeElement && C.focus(), a = null != b ? b.nextSibling : x;
+    }
+  }
+
+  if (null != f && n.type !== v) for (p = f.length; p--;) null != f[p] && c(f[p]);
+
+  for (p = $; p--;) null != T[p] && P(T[p], s);
+}
+
+function g(l, n, u, i) {
+  if (null == n && (n = []), null == l || "boolean" == typeof l) i && n.push(null);else if (Array.isArray(l)) for (var t = 0; t < l.length; t++) g(l[t], n, u, i);else n.push(u ? u(l) : l);
+  return n;
+}
+
+function k(l, n, u, i) {
+  var t, r;
+
+  for (t in n) "children" === t || "key" === t || u && ("value" === t || "checked" === t ? l : u)[t] === n[t] || b(l, t, n[t], u[t], i);
+
+  for (r in u) "children" === r || "key" === r || n && r in n || b(l, r, null, u[r], i);
+}
+
+function b(l, n, u, t, r) {
+  var e, o, c, s, a, h;
+  if ("class" !== n && "className" !== n || (n = r ? "class" : "className"), "style" === n) {
+    if (o = l.style, "string" == typeof u) o.cssText = u;else {
+      if ("string" == typeof t) o.cssText = "";else for (c in t) null != u && c in u || o.setProperty(c.replace(i, "-"), "");
+
+      for (s in u) e = u[s], null != t && e === t[s] || o.setProperty(s.replace(i, "-"), "number" == typeof e && !1 === f.test(s) ? e + "px" : e);
+    }
+  } else {
+    if ("dangerouslySetInnerHTML" === n) return;
+    "o" === n[0] && "n" === n[1] ? (a = n !== (n = n.replace(/Capture$/, "")), h = n.toLowerCase(), n = (h in l ? h : n).substring(2), u ? t || l.addEventListener(n, x, a) : l.removeEventListener(n, x, a), (l.u || (l.u = {}))[n] = u) : "list" !== n && "tagName" !== n && !r && n in l ? l[n] = null == u ? "" : u : null == u || !1 === u ? n !== (n = n.replace(/^xlink:?/, "")) ? l.removeAttributeNS("http://www.w3.org/1999/xlink", n.toLowerCase()) : l.removeAttribute(n) : "function" != typeof u && (n !== (n = n.replace(/^xlink:?/, "")) ? l.setAttributeNS("http://www.w3.org/1999/xlink", n.toLowerCase(), u) : l.setAttribute(n, u));
+  }
+}
+
+function x(n) {
+  return this.u[n.type](l.event ? l.event(n) : n);
+}
+
+function _(n, u, i, t, e, f, c, s, a, h, d) {
+  var m, g, k, b, x, A, j, z, D, H, I, L, M, O;
+
+  if (null == t || null == i || t.type !== i.type || t.key !== i.key) {
+    if (null != t && P(t, a), null == i) return null;
+    n = null, t = r;
+  }
+
+  l.diff && l.diff(i), k = !1, j = i.type;
+
+  try {
+    l: if (t.type === v || j === v) w(u, i, t, e, f, c, s, m, d), n = null, i.__k.length && null != i.__k[0] && (n = i.__k[0].__e, i.l = (g = i.__k[i.__k.length - 1]).l || g.__e);else if ("function" == typeof j) {
+      if (H = (D = j.contextType) && e[D.__c], I = null != D ? H ? H.props.value : D.__p : e, t.__c ? (z = (m = i.__c = t.__c).__p, n = i.__e = t.__e) : (j.prototype && j.prototype.render ? i.__c = m = new j(i.props, I) : (i.__c = m = new p(i.props, I), m.constructor = j, m.render = T), m.__a = a, H && H.sub(m), m.props = i.props, m.state || (m.state = {}), m.context = I, m.__n = e, k = m.__d = !0, m.__h = []), m.__v = i, L = m.__s || m.state, null != j.getDerivedStateFromProps && (x = o({}, m.state), L === m.state && (L = m.__s = o({}, L)), o(L, j.getDerivedStateFromProps(i.props, L))), k) null == j.getDerivedStateFromProps && null != m.componentWillMount && m.componentWillMount(), null != m.componentDidMount && s.push(m);else {
+        if (null == j.getDerivedStateFromProps && null == h && null != m.componentWillReceiveProps && (m.componentWillReceiveProps(i.props, I), L = m.__s || m.state), !h && null != m.shouldComponentUpdate && !1 === m.shouldComponentUpdate(i.props, L, I)) {
+          n = i.__e, m.props = i.props, m.state = L, m.__d = !1, i.l = t.l;
+          break l;
+        }
+
+        null != m.componentWillUpdate && m.componentWillUpdate(i.props, L, I);
+      }
+      b = m.props, x || (x = m.state), m.context = I, m.props = i.props, m.state = L, l.render && l.render(i), M = m.__t || null, O = m.__t = y(m.render(m.props, m.state, m.context)), m.__d = !1, null != m.getChildContext && (e = o(o({}, e), m.getChildContext())), k || null == m.getSnapshotBeforeUpdate || (A = m.getSnapshotBeforeUpdate(b, x)), m.__b = a ? (a.__b || 0) + 1 : 0, m.base = n = _(n, u, O, M, e, f, c, s, m, null, d), null != O && (i.l = O.l), m.__P = u, i.ref && N(i.ref, m, a);
+    } else n = C(n, i, t, e, f, c, s, a), i.ref && t.ref !== i.ref && N(i.ref, n, a);
+
+    if (i.__e = n, null != m) {
+      for (; g = m.__h.pop();) g.call(m);
+
+      k || null == b || null == m.componentDidUpdate || m.componentDidUpdate(b, x, A);
+    }
+
+    z && (m.__p = null), l.diffed && l.diffed(i);
+  } catch (l) {
+    $(l, a);
+  }
+
+  return n;
+}
+
+function A(n, u) {
+  for (var i; i = n.pop();) try {
+    i.componentDidMount();
+  } catch (l) {
+    $(l, i.__a);
+  }
+
+  l.commit && l.commit(u);
+}
+
+function C(l, n, u, i, t, f, o, c) {
+  var s,
+      a,
+      h,
+      v,
+      y,
+      p,
+      d,
+      m,
+      g = l;
+  if (t = "svg" === n.type || t, null == l && null != f) for (s = 0; s < f.length; s++) if (null != (a = f[s]) && (null === n.type ? 3 === a.nodeType : a.localName === n.type)) {
+    l = a, f[s] = null;
+    break;
+  }
+  if (null == l && (l = null === n.type ? document.createTextNode(n.text) : t ? document.createElementNS("http://www.w3.org/2000/svg", n.type) : document.createElement(n.type), f = null), n.__e = l, null === n.type) null !== g && l !== g || n.text === u.text || (l.data = n.text);else if (null != f && null != l.childNodes && (f = e.slice.call(l.childNodes)), n !== u) {
+    if (v = n.props, null == (h = u.props) && (h = {}, null != f)) for (p = 0; p < l.attributes.length; p++) h["class" == (y = l.attributes[p].name) && v.className ? "className" : y] = l.attributes[p].value;
+    d = h.dangerouslySetInnerHTML, ((m = v.dangerouslySetInnerHTML) || d) && (m && d && m.__html == d.__html || (l.innerHTML = m && m.__html || "")), v.multiple && (l.multiple = v.multiple), w(l, n, u, i, "foreignObject" !== n.type && t, f, o, c, r), k(l, v, h, t);
+  }
+  return l;
+}
+
+function N(l, n, u) {
+  try {
+    "function" == typeof l ? l(n) : l.current = n;
+  } catch (l) {
+    $(l, u);
+  }
+}
+
+function P(n, u, i) {
+  var t, r, e;
+
+  if (l.unmount && l.unmount(n), (t = n.ref) && N(t, null, u), i || null != n.l || (i = null != (r = n.__e)), n.__e = n.l = null, null != (t = n.__c)) {
+    if (t.componentWillUnmount) try {
+      t.componentWillUnmount();
+    } catch (l) {
+      $(l, u);
+    }
+    t.base = t.__P = null, (t = t.__t) && P(t, u, i);
+  } else if (t = n.__k) for (e = 0; e < t.length; e++) t[e] && P(t[e], u, i);
+
+  null != r && c(r);
+}
+
+function T(l, n, u) {
+  return this.constructor(l, u);
+}
+
+function $(l, n) {
+  for (; n; n = n.__a) if (!n.__p) try {
+    if (null != n.constructor.getDerivedStateFromError) n.setState(n.constructor.getDerivedStateFromError(l));else {
+      if (null == n.componentDidCatch) continue;
+      n.componentDidCatch(l);
+    }
+    return d(n.__p = n);
+  } catch (n) {
+    l = n;
+  }
+
+  throw l;
+}
+
+function j(n, u) {
+  var i, t;
+  l.root && l.root(n, u), i = u.__t, n = s(v, null, [n]), t = [], w(u, u.__t = n, i, r, void 0 !== u.ownerSVGElement, i ? null : e.slice.call(u.childNodes), t, n, r), A(t, n);
+}
+
+function z(l, n) {
+  n.__t = null, j(l, n);
+}
+
+function D(l, n) {
+  return n = o(o({}, l.props), n), arguments.length > 2 && (n.children = e.slice.call(arguments, 2)), a(l.type, n, null, n.key || l.key, n.ref || l.ref);
+}
+
+function H(l) {
+  var n,
+      u = "__cC" + t++,
+      i = {
+    __c: u,
+    __p: l
+  };
+
+  function r(l, n) {
+    return l.children(n);
+  }
+
+  return r.contextType = i, i.Consumer = r, (n = {})[u] = null, i.Provider = function (l) {
+    var i, t;
+    return this.getChildContext || (t = [], (i = this).getChildContext = function () {
+      return n[u] = i, n;
+    }, i.shouldComponentUpdate = function (l) {
+      t.map(function (n) {
+        n.__P && (n.context = l.value, d(n));
+      });
+    }, i.sub = function (l) {
+      t.push(l);
+      var n = l.componentWillUnmount;
+
+      l.componentWillUnmount = function () {
+        t.splice(t.indexOf(l), 1), n && n();
+      };
+    }), l.children;
+  }, i;
+}
+
+exports.options = l = {}, p.prototype.setState = function (l, n) {
+  var u = this.__s !== this.state && this.__s || (this.__s = o({}, this.state));
+  ("function" != typeof l || (l = l(u, this.props))) && o(u, l), null != l && this.__v && (n && this.__h.push(n), d(this));
+}, p.prototype.forceUpdate = function (l) {
+  var n,
+      u = this.__v,
+      i = this.__v.__e,
+      t = this.__P;
+  t && (null != (i = _(i, t, u, u, this.__n, void 0 !== t.ownerSVGElement, null, n = [], this.__a, !1 !== l, i)) && i.parentNode !== t && t.appendChild(i), A(n, u)), l && l();
+}, p.prototype.render = v, n = [], u = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, i = /-?(?=[A-Z])/g, t = 0; //# sourceMappingURL=preact.module.js.map
+},{}],"../node_modules/preact/hooks/dist/hooks.module.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useState = e;
+exports.useReducer = a;
+exports.useEffect = v;
+exports.useLayoutEffect = l;
+exports.useRef = p;
+exports.useMemo = y;
+exports.useCallback = d;
+exports.useContext = m;
+
+var _preact = require("preact");
+
+var r,
+    t,
+    u = [],
+    f = _preact.options.render;
+
+_preact.options.render = function (n) {
+  f && f(n), r = 0, (t = n.__c).__H && (t.__H.t = g(t.__H.t));
+};
+
+var i = _preact.options.diffed;
+
+_preact.options.diffed = function (n) {
+  i && i(n);
+  var r = n.__c;
+
+  if (r) {
+    var t = r.__H;
+    t && (t.u = g(t.u));
+  }
+};
+
+var o = _preact.options.unmount;
+
+function c(n) {
+  var r = t.__H || (t.__H = {
+    i: [],
+    t: [],
+    u: []
+  });
+  return n >= r.i.length && r.i.push({}), r.i[n];
+}
+
+function e(n) {
+  return a(x, n);
+}
+
+function a(n, u, f) {
+  var i = c(r++);
+  return null == i.__c && (i.__c = t, i.o = [null == f ? x(null, u) : f(u), function (r) {
+    var t = n(i.o[0], r);
+    i.o[0] !== t && (i.o[0] = t, i.__c.setState({}));
+  }]), i.o;
+}
+
+function v(u, f) {
+  var i = c(r++);
+  q(i.v, f) && (i.o = u, i.v = f, t.__H.t.push(i), Array.isArray(_preact.options.effects) && _preact.options.effects.push(i), s(t));
+}
+
+function l(u, f) {
+  var i = c(r++);
+  q(i.v, f) && (i.o = u, i.v = f, Array.isArray(_preact.options.effects) && _preact.options.effects.push(i), t.__H.u.push(i));
+}
+
+function p(n) {
+  var t = c(r++);
+  return null == t.o && (t.o = {
+    current: n
+  }), t.o;
+}
+
+function y(n, t) {
+  var u = c(r++);
+  return q(u.v, t) ? (u.v = t, u.l = n, u.o = n()) : u.o;
+}
+
+function d(n, r) {
+  return y(function () {
+    return n;
+  }, r);
+}
+
+function m(n) {
+  var u = t.context[n.__c];
+  if (null == u) return n.__p;
+  var f = c(r++);
+  return null == f.o && (f.o = !0, u.sub(t)), u.props.value;
+}
+
+_preact.options.unmount = function (n) {
+  o && o(n);
+  var r = n.__c;
+
+  if (r) {
+    var t = r.__H;
+    t && t.i.forEach(function (n) {
+      return n.p && n.p();
+    });
+  }
+};
+
+var s = function () {};
+
+function A() {
+  u.forEach(function (n) {
+    n.m = !1, n.__P && (n.__H.t = g(n.__H.t));
+  }), u = [];
+}
+
+function _() {
+  setTimeout(A, 0);
+}
+
+function g(r) {
+  return r.forEach(w), r.forEach(E), _preact.options.effects && r.forEach(function (r) {
+    return _preact.options.effects = _preact.options.effects.filter(function (n) {
+      return n !== r;
+    });
+  }), [];
+}
+
+function w(n) {
+  n.p && n.p();
+}
+
+function E(n) {
+  var r = n.o();
+  "function" == typeof r && (n.p = r);
+}
+
+function q(n, r) {
+  return null == n || r.some(function (r, t) {
+    return r !== n[t];
+  });
+}
+
+function x(n, r) {
+  return "function" == typeof r ? r(n) : r;
+}
+
+"undefined" != typeof window && (s = function (r) {
+  !r.m && (r.m = !0) && 1 === u.push(r) && (_preact.options.requestAnimationFrame ? _preact.options.requestAnimationFrame(A) : requestAnimationFrame(_));
+}); //# sourceMappingURL=hooks.module.js.map
+},{"preact":"../node_modules/preact/dist/preact.module.js"}],"../src/components/SettingsPane.tsx":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+
+var preact_1 = require("preact");
+
+function SettingsPane(_a) {
+  var visible = _a.visible;
+  var display = visible ? "block" : "none";
+  return preact_1.h(preact_1.Fragment, null, preact_1.h("div", {
+    "class": "settings-shade",
+    style: {
+      display: display
+    }
+  }), preact_1.h("div", {
+    "class": "settings",
+    style: {
+      display: display
+    }
+  }, preact_1.h("div", {
+    "class": "settings-inner"
+  }, "Hello!")));
+}
+
+exports["default"] = SettingsPane;
+},{"preact":"../node_modules/preact/dist/preact.module.js"}],"../node_modules/@material/ripple/util.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6637,7 +7190,90 @@ Object.keys(_foundation).forEach(function (key) {
 });
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-},{"./util":"../node_modules/@material/ripple/util.js","./component":"../node_modules/@material/ripple/component.js","./foundation":"../node_modules/@material/ripple/foundation.js"}],"../src/util/saveDataUrl.ts":[function(require,module,exports) {
+},{"./util":"../node_modules/@material/ripple/util.js","./component":"../node_modules/@material/ripple/component.js","./foundation":"../node_modules/@material/ripple/foundation.js"}],"../src/components/MDCIconButton.tsx":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+exports.__esModule = true;
+
+var preact_1 = require("preact");
+
+var ripple_1 = require("@material/ripple");
+
+;
+/**
+ * Simple Preact wrapper for Material Design Components icon buttons.
+ * https://material.io/develop/web/components/buttons/icon-buttons/
+ */
+
+var MDCIconButton =
+/** @class */
+function (_super) {
+  __extends(MDCIconButton, _super);
+
+  function MDCIconButton() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.refHandler = function (node) {
+      if (_this.ref != null) {
+        _this.ref = node;
+        _this.ripple = new ripple_1.MDCRipple(_this.ref);
+        _this.ripple.unbounded = true;
+      }
+    };
+
+    return _this;
+  }
+
+  MDCIconButton.prototype.componentWillUnmount = function () {
+    if (this.ripple != null) {
+      this.ripple.destroy();
+    }
+  };
+
+  MDCIconButton.prototype.render = function () {
+    var _a = this.props,
+        title = _a.title,
+        icon = _a.icon,
+        onClick = _a.onClick;
+    return preact_1.h("button", {
+      ref: this.refHandler,
+      "class": "mdc-icon-button material-icons",
+      title: title,
+      onClick: onClick
+    }, icon);
+  };
+
+  return MDCIconButton;
+}(preact_1.Component);
+
+exports["default"] = MDCIconButton;
+},{"preact":"../node_modules/preact/dist/preact.module.js","@material/ripple":"../node_modules/@material/ripple/index.js"}],"../src/util/saveDataUrl.ts":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -6653,7 +7289,7 @@ function saveDataUrl(dataUrl, filename) {
 }
 
 exports["default"] = saveDataUrl;
-},{}],"../src/entry_extras.ts":[function(require,module,exports) {
+},{}],"../src/components/Root.tsx":[function(require,module,exports) {
 "use strict";
 
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
@@ -6687,7 +7323,7 @@ var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, gene
 var __generator = this && this.__generator || function (thisArg, body) {
   var _ = {
     label: 0,
-    sent: function () {
+    sent: function sent() {
       if (t[0] & 1) throw t[1];
       return t[1];
     },
@@ -6715,74 +7351,76 @@ var __generator = this && this.__generator || function (thisArg, body) {
   function step(op) {
     if (f) throw new TypeError("Generator is already executing.");
 
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
 
-      switch (op[0]) {
-        case 0:
-        case 1:
-          t = op;
-          break;
-
-        case 4:
-          _.label++;
-          return {
-            value: op[1],
-            done: false
-          };
-
-        case 5:
-          _.label++;
-          y = op[1];
-          op = [0];
-          continue;
-
-        case 7:
-          op = _.ops.pop();
-
-          _.trys.pop();
-
-          continue;
-
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-            _ = 0;
-            continue;
-          }
-
-          if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-            _.label = op[1];
-            break;
-          }
-
-          if (op[0] === 6 && _.label < t[1]) {
-            _.label = t[1];
+        switch (op[0]) {
+          case 0:
+          case 1:
             t = op;
             break;
-          }
 
-          if (t && _.label < t[2]) {
-            _.label = t[2];
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
 
-            _.ops.push(op);
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
 
-            break;
-          }
+          case 7:
+            op = _.ops.pop();
 
-          if (t[2]) _.ops.pop();
+            _.trys.pop();
 
-          _.trys.pop();
+            continue;
 
-          continue;
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
       }
-
-      op = body.call(thisArg, _);
-    } catch (e) {
-      op = [6, e];
-      y = 0;
-    } finally {
-      f = t = 0;
     }
 
     if (op[0] & 5) throw op[1];
@@ -6799,104 +7437,135 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
-exports.__esModule = true; // @ts-ignore
+exports.__esModule = true;
 
-require("../styles/extras.scss");
+var preact_1 = require("preact");
 
-var ripple_1 = require("@material/ripple");
+var hooks_1 = require("preact/hooks");
 
-var loadImage_1 = __importDefault(require("./graphics/loadImage"));
+var SettingsPane_1 = __importDefault(require("./SettingsPane"));
 
-var CanvasImage_1 = require("./graphics/CanvasImage");
+var MDCIconButton_1 = __importDefault(require("./MDCIconButton"));
 
-var saveDataUrl_1 = __importDefault(require("./util/saveDataUrl"));
+var loadImage_1 = __importDefault(require("../graphics/loadImage"));
 
-function extras(dataUrl) {
-  var _this = this;
+var CanvasImage_1 = require("../graphics/CanvasImage");
 
-  console.log("Extras loaded."); // Show buttons, override style in main.scss
+var saveDataUrl_1 = __importDefault(require("../util/saveDataUrl"));
 
-  var buttonList = document.querySelector(".buttons");
+function getBackgroundColor(textColor) {
+  switch (textColor) {
+    case "transparent":
+      return "transparent";
 
-  if (buttonList instanceof HTMLElement) {
-    buttonList.style.display = "block";
+    case "#fff":
+      return "--color-translucent-black";
+
+    case "#000":
+    default:
+      return "--color-translucent-white";
   }
+}
 
-  var heart = document.querySelector("#heart");
+;
 
-  if (heart instanceof HTMLElement) {
-    var heartRipple = new ripple_1.MDCRipple(heart);
-    heartRipple.unbounded = true;
-  }
+function Root(_a) {
+  var background = _a.background;
+  var _b = background.dataUrl,
+      dataUrl = _b === void 0 ? "" : _b,
+      _c = background.textColor,
+      textColor = _c === void 0 ? "transparent" : _c;
+  var backgroundColor = getBackgroundColor(textColor);
 
-  var download = document.querySelector("#download");
+  var _d = hooks_1.useState(false),
+      visible = _d[0],
+      setVisible = _d[1];
 
-  if (download instanceof HTMLElement) {
-    var downloadRipple = new ripple_1.MDCRipple(download);
-    downloadRipple.unbounded = true;
-    download.addEventListener("mousedown", function () {
-      return __awaiter(_this, void 0, void 0, function () {
-        var pngUrl, _a;
+  function onDownload() {
+    return __awaiter(this, void 0, void 0, function () {
+      var pngUrl, _a;
 
-        return __generator(this, function (_b) {
-          switch (_b.label) {
-            case 0:
-              _a = CanvasImage_1.toDataUrl;
-              return [4
-              /*yield*/
-              , loadImage_1["default"](dataUrl)];
+      return __generator(this, function (_b) {
+        switch (_b.label) {
+          case 0:
+            _a = CanvasImage_1.toDataUrl;
+            return [4
+            /*yield*/
+            , loadImage_1["default"](dataUrl)];
 
-            case 1:
-              pngUrl = _a.apply(void 0, [_b.sent(), "png"]);
-              saveDataUrl_1["default"](pngUrl, "Epoch_Image.png");
-              return [2
-              /*return*/
-              ];
-          }
-        });
+          case 1:
+            pngUrl = _a.apply(void 0, [_b.sent(), "png"]);
+            saveDataUrl_1["default"](pngUrl, "Epoch_Image.png");
+            return [2
+            /*return*/
+            ];
+        }
       });
     });
   }
 
-  var settings = document.querySelector("#settings");
-
-  if (settings instanceof HTMLElement) {
-    var settingsRipple = new ripple_1.MDCRipple(settings);
-    settingsRipple.unbounded = true;
+  function onSettings() {
+    setVisible(true);
   }
+
+  return preact_1.h(preact_1.Fragment, null, preact_1.h("div", {
+    "class": "buttons",
+    style: {
+      color: textColor,
+      backgroundColor: backgroundColor
+    }
+  }, preact_1.h(MDCIconButton_1["default"], {
+    title: "Favorite",
+    icon: "favorite_border"
+  }), preact_1.h(MDCIconButton_1["default"], {
+    title: "Download",
+    icon: "save_alt",
+    onClick: onDownload
+  }), preact_1.h(MDCIconButton_1["default"], {
+    title: "Settings",
+    icon: "more_vert",
+    onClick: onSettings
+  })), preact_1.h(SettingsPane_1["default"], {
+    visible: visible
+  }));
+}
+
+exports["default"] = Root;
+},{"preact":"../node_modules/preact/dist/preact.module.js","preact/hooks":"../node_modules/preact/hooks/dist/hooks.module.js","./SettingsPane":"../src/components/SettingsPane.tsx","./MDCIconButton":"../src/components/MDCIconButton.tsx","../graphics/loadImage":"../src/graphics/loadImage.ts","../graphics/CanvasImage":"../src/graphics/CanvasImage.ts","../util/saveDataUrl":"../src/util/saveDataUrl.ts"}],"../src/entry_extras.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+exports.__esModule = true; // @ts-ignore
+
+require("../styles/extras.scss");
+
+var preact_1 = require("preact");
+
+var Root_1 = __importDefault(require("./components/Root"));
+
+function extras(store) {
+  // Show buttons, override style in main.scss
+  var root = document.querySelector(".root");
+  root.style.display = "block"; // We can assume by this point the state
+  // has the image/colors we want.
+
+  var state = store.getState(); // Initialize Preact.
+
+  preact_1.render(preact_1.h(Root_1["default"], {
+    background: state.background.clone()
+  }), root); // Done.
+
+  console.log("Extras loaded.");
 }
 
 exports.extras = extras;
 ;
-
-function updateColors(textColor) {
-  var buttonList = document.querySelector(".buttons");
-
-  if (buttonList instanceof HTMLElement) {
-    var bgColor = void 0;
-
-    switch (textColor) {
-      case "transparent":
-        bgColor = "transparent";
-        break;
-
-      case "#fff":
-        bgColor = "rgba(0,0,0,0.3)";
-        break;
-
-      case "#000":
-      default:
-        bgColor = rgba(255, 255, 255, 0.2);
-        break;
-    }
-
-    buttonList.style.backgroundColor = bgColor;
-    buttonList.style.color = textColor;
-  }
-}
-
-exports.updateColors = updateColors;
-},{"../styles/extras.scss":"../styles/extras.scss","@material/ripple":"../node_modules/@material/ripple/index.js","./graphics/loadImage":"../src/graphics/loadImage.ts","./graphics/CanvasImage":"../src/graphics/CanvasImage.ts","./util/saveDataUrl":"../src/util/saveDataUrl.ts"}],"../src/entry_main.ts":[function(require,module,exports) {
+},{"../styles/extras.scss":"../styles/extras.scss","preact":"../node_modules/preact/dist/preact.module.js","./components/Root":"../src/components/Root.tsx"}],"../src/entry_main.ts":[function(require,module,exports) {
 "use strict";
 
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
@@ -6930,7 +7599,7 @@ var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, gene
 var __generator = this && this.__generator || function (thisArg, body) {
   var _ = {
     label: 0,
-    sent: function () {
+    sent: function sent() {
       if (t[0] & 1) throw t[1];
       return t[1];
     },
@@ -6958,74 +7627,76 @@ var __generator = this && this.__generator || function (thisArg, body) {
   function step(op) {
     if (f) throw new TypeError("Generator is already executing.");
 
-    while (_) try {
-      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-      if (y = 0, t) op = [op[0] & 2, t.value];
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
 
-      switch (op[0]) {
-        case 0:
-        case 1:
-          t = op;
-          break;
-
-        case 4:
-          _.label++;
-          return {
-            value: op[1],
-            done: false
-          };
-
-        case 5:
-          _.label++;
-          y = op[1];
-          op = [0];
-          continue;
-
-        case 7:
-          op = _.ops.pop();
-
-          _.trys.pop();
-
-          continue;
-
-        default:
-          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-            _ = 0;
-            continue;
-          }
-
-          if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-            _.label = op[1];
-            break;
-          }
-
-          if (op[0] === 6 && _.label < t[1]) {
-            _.label = t[1];
+        switch (op[0]) {
+          case 0:
+          case 1:
             t = op;
             break;
-          }
 
-          if (t && _.label < t[2]) {
-            _.label = t[2];
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
 
-            _.ops.push(op);
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
 
-            break;
-          }
+          case 7:
+            op = _.ops.pop();
 
-          if (t[2]) _.ops.pop();
+            _.trys.pop();
 
-          _.trys.pop();
+            continue;
 
-          continue;
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
       }
-
-      op = body.call(thisArg, _);
-    } catch (e) {
-      op = [6, e];
-      y = 0;
-    } finally {
-      f = t = 0;
     }
 
     if (op[0] & 5) throw op[1];
@@ -7045,7 +7716,9 @@ var __importDefault = this && this.__importDefault || function (mod) {
 var __importStar = this && this.__importStar || function (mod) {
   if (mod && mod.__esModule) return mod;
   var result = {};
-  if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  if (mod != null) for (var k in mod) {
+    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  }
   result["default"] = mod;
   return result;
 };
@@ -7063,10 +7736,9 @@ var VersionedState_1 = __importDefault(require("./store/util/VersionedState"));
 var onDocumentReady_1 = __importDefault(require("./util/onDocumentReady"));
 
 var globalKey = VersionedState_1["default"].createGlobalKey();
-var extras;
 onDocumentReady_1["default"]().then(function () {
   return __awaiter(_this, void 0, void 0, function () {
-    var nodes, dividerChildList, timeList, _a, store, actions, e_1;
+    var nodes, dividerChildList, timeList, _a, store, actions, e_1, extras;
 
     return __generator(this, function (_b) {
       switch (_b.label) {
@@ -7112,17 +7784,22 @@ onDocumentReady_1["default"]().then(function () {
                   dataUrl = _c === void 0 ? "" : _c,
                   _d = _b.gradient,
                   gradient = _d === void 0 ? ["transparent", "transparent"] : _d,
-                  _e = _b.shadows,
-                  shadows = _e === void 0 ? ["transparent", "transparent"] : _e,
-                  _f = _b.textColor,
-                  textColor_1 = _f === void 0 ? "transparent" : _f; // Set background image.
+                  _e = _b.shadowBase,
+                  shadowBase = _e === void 0 ? "black" : _e,
+                  _f = _b.shadows,
+                  shadows = _f === void 0 ? ["transparent", "transparent"] : _f,
+                  _g = _b.textColor,
+                  textColor_1 = _g === void 0 ? "transparent" : _g; // Set background image.
 
               nodes.background.style.backgroundImage = "url(" + dataUrl + ")";
-              document.body.style.opacity = "1"; // Set container style.
+              document.body.style.opacity = "1"; // Set body style.
 
-              nodes.container.style.setProperty("--gradient-main", gradient[0]);
-              nodes.container.style.setProperty("--gradient-secondary", gradient[1]);
-              nodes.container.style.boxShadow = "0 4px 32px " + shadows[0] + ", 0 32px 128px " + shadows[1]; // Set text style.
+              var body = document.body;
+              body.style.setProperty("--gradient-main", gradient[0]);
+              body.style.setProperty("--gradient-secondary", gradient[1]);
+              body.style.setProperty("--shadow-base", shadowBase);
+              body.style.setProperty("--shadow-main", shadows[0]);
+              body.style.setProperty("--shadow-secondary", shadows[1]); // Set text style.
 
               timeList.forEach(function (el) {
                 return el.style.color = textColor_1;
@@ -7130,10 +7807,6 @@ onDocumentReady_1["default"]().then(function () {
               dividerChildList.forEach(function (el) {
                 return el.style.backgroundColor = textColor_1;
               });
-
-              if (extras != null) {
-                extras.updateColors(textColor_1);
-              }
             }
           });
           actions.tickEveryMinute();
@@ -7150,6 +7823,27 @@ onDocumentReady_1["default"]().then(function () {
 
             CSS.registerProperty({
               name: "--gradient-secondary",
+              syntax: "<color>",
+              inherits: false,
+              initialValue: "transparent"
+            }); // @ts-ignore
+
+            CSS.registerProperty({
+              name: "--shadow-base",
+              syntax: "<color>",
+              inherits: false,
+              initialValue: "black"
+            }); // @ts-ignore
+
+            CSS.registerProperty({
+              name: "--shadow-main",
+              syntax: "<color>",
+              inherits: false,
+              initialValue: "transparent"
+            }); // @ts-ignore
+
+            CSS.registerProperty({
+              name: "--shadow-secondary",
               syntax: "<color>",
               inherits: false,
               initialValue: "transparent"
@@ -7199,10 +7893,8 @@ onDocumentReady_1["default"]().then(function () {
           })];
 
         case 7:
-          // Load extras bundle (things like settings).
           extras = _b.sent();
-          extras.extras(store.getState().background.dataUrl || '');
-          extras.updateColors(store.getState().background.textColor || "transparent");
+          extras.extras(store);
           return [2
           /*return*/
           ];
@@ -7210,7 +7902,7 @@ onDocumentReady_1["default"]().then(function () {
     });
   });
 });
-},{"../styles/main.scss":"../styles/main.scss","./store":"../src/store/index.ts","./store/util/VersionedState":"../src/store/util/VersionedState.ts","./util/onDocumentReady":"../src/util/onDocumentReady.ts","./entry_extras":"../src/entry_extras.ts"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../styles/main.scss":"../styles/main.scss","./store":"../src/store/index.ts","./store/util/VersionedState":"../src/store/util/VersionedState.ts","./util/onDocumentReady":"../src/util/onDocumentReady.ts","./entry_extras":"../src/entry_extras.tsx"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -7238,7 +7930,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44219" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44321" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

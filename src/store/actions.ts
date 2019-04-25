@@ -1,7 +1,7 @@
 import { Store, bindActionCreators } from "redux";
 
 import BackgroundImage from "../graphics/BackgroundImage";
-import { everySecond, everyMinute } from "./util/timing";
+import { everySecond, everyMinute } from "./timing";
 
 export interface Action {
   type: ActionType
@@ -10,6 +10,7 @@ export interface Action {
 export interface BackgroundAction extends Action {
   dataUrl: string;
   gradient: [string, string];
+  shadowBase: string;
   shadows: [string, string];
   textColor: string;
   preload: boolean;
@@ -81,6 +82,7 @@ export const actions = {
         type: ActionType.UPDATE_BACKGROUND,
         dataUrl: bg.dataUrl,
         gradient: bg.getGradientColors(),
+        shadowBase: bg.getShadowBaseColor(),
         shadows: bg.getShadowColors(),
         textColor: bg.getTextColor(),
         preload

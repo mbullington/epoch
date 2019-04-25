@@ -12,14 +12,18 @@
     "gamblers-dice": "^1.0.1",
     "localforage": "^1.7.3",
     "node-vibrant": "https://github.com/mbullington/node-vibrant.git",
+    "preact": "next",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.0.0-0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "babel-preset-env": "^1.7.0",
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.12.3",
+    "sass": "^1.19.0",
     "tsconfig-palmerhq": "^1.0.2",
     "typescript": "^3.4.5"
   }

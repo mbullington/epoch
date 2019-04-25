@@ -60,12 +60,21 @@ export default class BackgroundImage {
     ];
   }
 
-  getShadowColors(): [string, string] {
+  getShadowBaseColor(): string {
     const brightness = this.getBrightness(this.darkVibrant);
     const rgb = brightness > 0 ?
         this.darken(this.darkVibrant, 0.4) :
         this.darkVibrant.getRgb();
     
+    return this.toCss(rgb);
+  }
+
+  getShadowColors(): [string, string] {
+    const brightness = this.getBrightness(this.darkVibrant);
+    const rgb = brightness > 0 ?
+        this.darken(this.darkVibrant, 0.4) :
+        this.darkVibrant.getRgb();
+        
     return [
       this.toCssAlpha(rgb, 0.3),
       this.toCssAlpha(rgb, 0.2)
@@ -76,12 +85,12 @@ export default class BackgroundImage {
 
   toCss(rgb: [number, number, number]): string {
     const [ r, g, b ] = rgb;
-    return `rgb(${r}, ${g}, ${b})`;
+    return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
   }
   
   toCssAlpha(rgb: [number, number, number], a: number): string {
     const [ r, g, b ] = rgb;
-    return `rgba(${r}, ${g}, ${b}, ${a})`;
+    return `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${a})`;
   }
   
   // color helpers

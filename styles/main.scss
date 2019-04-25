@@ -1,9 +1,25 @@
+@import "z-indexes";
+
+@import "fonts/Poppins";
+
 :root {
     --gradient-main: transparent;
     --gradient-secondary: transparent;
+
+    --shadow-base: black;
+    --shadow-main: transparent;
+    --shadow-secondary: transparent;
+
+    --family-title: "Poppins";
+
+    --color-translucent-black: rgba(0,0,0,0.3);
+    --color-translucent-white: rgba(255,255,255,0.4);
+
+    --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 * {
+    box-sizing: border-box;
     all: unset;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -37,13 +53,13 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 20;
+    z-index: $z-index-background;
 
     background-size: cover;
 }
 
 .container {
-    z-index: 30;
+    z-index: $z-index-container;
 
     display: inline-flex;
     flex-direction: row;
@@ -51,12 +67,20 @@ body {
     padding: 36px;
     margin: auto;
 
-    transition: opacity 200ms ease-in-out, --gradient-main 200ms ease-in-out, --gradient-secondary 200ms ease-in-out;
+    transition: opacity 200ms var(--ease-in-out-quad),
+            transform 180ms var(--ease-in-out-quad),
+            --gradient-main 200ms var(--ease-in-out-quad),
+            --gradient-secondary 200ms var(--ease-in-out-quad);
     background-image: linear-gradient(45deg, var(--gradient-main), var(--gradient-secondary));
     opacity: 1;
+    transform: scale(1);
+    
+    box-shadow: 0 4px 32px var(--shadow-main),
+        0 32px 128px var(--shadow-secondary);
 
     &:hover {
         opacity: 0.8;
+        transform: scale(0.97);
     }
 }
 
@@ -86,17 +110,14 @@ body {
 }
 
 .time {
-    font-family: "Poppins";
+    font-family: var(--family-title);
     font-size: 128px;
     line-height: 128px;
     color: white;
 }
 
-.buttons {
-    position: absolute;
-    right: 32px;
-    bottom: 24px;
-    z-index: 40;
+.root {
+    z-index: $z-index-root;
 
     // Overwritten in entry_extras.ts
     display: none;

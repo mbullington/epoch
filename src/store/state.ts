@@ -9,6 +9,7 @@ export class TimeState extends VersionedState {
 export class BackgroundState extends VersionedState {
   dataUrl?: string;
   gradient?: [string, string];
+  shadowBase?: string;
   shadows?: [string, string];
   textColor?: string;
   preload?: boolean;

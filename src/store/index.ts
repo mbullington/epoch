@@ -7,7 +7,7 @@ import State, {TimeState, BackgroundState} from "./state";
 
 import VersionedState from "./util/VersionedState";
 import createReducer, {ReducerObject} from "./util/createReducer";
-import { hhmmFromDate } from "./util/format";
+import { hhmmFromDate } from "./format";
 
 const reducerObj: ReducerObject = {
   // time
@@ -34,6 +34,7 @@ const reducerObj: ReducerObject = {
     state.background.setState({
       dataUrl: action.dataUrl,
       gradient: action.gradient,
+      shadowBase: action.shadowBase,
       shadows: action.shadows,
       textColor: action.textColor,
       preload: action.preload
@@ -43,7 +44,8 @@ const reducerObj: ReducerObject = {
   }
 };
 
-export type Store2 = [Store<State, Action>, ReturnType<typeof createActions>];
+export type StoreType = Store<State, Action>;
+export type Store2 = [StoreType, ReturnType<typeof createActions>];
 
 export default async function(): Promise<Store2> {
   localForage.config({

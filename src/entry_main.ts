@@ -9,8 +9,6 @@ import onDocumentReady from "./util/onDocumentReady";
 
 const globalKey = VersionedState.createGlobalKey();
 
-let extras: typeof import("./entry_extras") | undefined;
-
 onDocumentReady()
 .then(async () => {
   const nodes = {
@@ -49,6 +47,7 @@ onDocumentReady()
       const {
         dataUrl = "",
         gradient = ["transparent", "transparent"],
+        shadowBase = "black",
         shadows = ["transparent", "transparent"],
         textColor = "transparent"
       } = state.background;
@@ -57,18 +56,19 @@ onDocumentReady()
       nodes.background.style.backgroundImage = `url(${dataUrl})`;
       document.body.style.opacity = "1";
 
-      // Set container style.
-      nodes.container.style.setProperty("--gradient-main", gradient[0]);
-      nodes.container.style.setProperty("--gradient-secondary", gradient[1]);
-      nodes.container.style.boxShadow = `0 4px 32px ${shadows[0]}, 0 32px 128px ${shadows[1]}`;
+      // Set body style.
+      const body = document.body;
+  
+      body.style.setProperty("--gradient-main", gradient[0]);
+      body.style.setProperty("--gradient-secondary", gradient[1]);
+
+      body.style.setProperty("--shadow-base", shadowBase);
+      body.style.setProperty("--shadow-main", shadows[0]);
+      body.style.setProperty("--shadow-secondary", shadows[1]);
 
       // Set text style.
       timeList.forEach(el => (<HTMLElement>el).style.color = textColor);
       dividerChildList.forEach(el => (<HTMLElement>el).style.backgroundColor = textColor);  
-
-      if (extras != null) {
-        extras.updateColors(textColor);
-      }
     }
   });
 
@@ -91,6 +91,30 @@ onDocumentReady()
       inherits: false,
       initialValue: "transparent"
     });
+
+    // @ts-ignore
+    CSS.registerProperty({
+      name: "--shadow-base",
+      syntax: "<color>",
+      inherits: false,
+      initialValue: "black"
+    });
+
+    // @ts-ignore
+    CSS.registerProperty({
+      name: "--shadow-main",
+      syntax: "<color>",
+      inherits: false,
+      initialValue: "transparent"
+    });
+
+    // @ts-ignore
+    CSS.registerProperty({
+      name: "--shadow-secondary",
+      syntax: "<color>",
+      inherits: false,
+      initialValue: "transparent"
+    });
   }
 
   try {
@@ -107,7 +131,6 @@ onDocumentReady()
   }
 
   // Load extras bundle (things like settings).
-  extras = await import("./entry_extras");
-  extras.extras(store.getState().background.dataUrl || '');
-  extras.updateColors(store.getState().background.textColor || "transparent");
+  const extras = await import("./entry_extras");
+  extras.extras(store);
 });
