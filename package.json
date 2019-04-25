@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@material/icon-button": "^1.1.0",
+    "classnames": "^2.2.6",
     "gamblers-dice": "^1.0.1",
+    "inter-ui": "^3.5.0",
     "localforage": "^1.7.3",
     "node-vibrant": "https://github.com/mbullington/node-vibrant.git",
     "preact": "next",
@@ -20,6 +22,7 @@
     "@babel/core": "^7.0.0-0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/classnames": "^2.2.7",
     "babel-preset-env": "^1.7.0",
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.12.3",

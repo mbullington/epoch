@@ -1,7 +1,7 @@
 import { Store, bindActionCreators } from "redux";
 
 import BackgroundImage from "../graphics/BackgroundImage";
-import { everySecond, everyMinute } from "./timing";
+import { everySecond, everyMinute } from "./util";
 
 export interface Action {
   type: ActionType

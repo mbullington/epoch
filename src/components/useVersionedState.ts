@@ -6,7 +6,6 @@ import VersionedState from "../store/util/VersionedState";
 // My first attempt at using React Hooks.
 export default function useVersionedState<T extends VersionedState>(store: StoreType, vState: T, shouldUpdate?: (vState: T) => boolean): T {
   const [globalKey] = useState(VersionedState.createGlobalKey());
-
   const [versionedState, setVersionedState] = useState(vState);
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import { h, Fragment } from "preact";
 import { useState } from "preact/hooks";
+import classnames from "classnames";
 
 import Settings from "./Settings";
 import MDCIconButton from "./MDCIconButton";
@@ -12,7 +13,7 @@ import { toDataUrl } from "../graphics/CanvasImage";
 
 import saveDataUrl from "../util/saveDataUrl";
 
-function getButtonsClass(textColor: string): string {
+function getBackgroundClass(textColor: string): string {
   switch (textColor) {
     case "transparent":
       return "";
@@ -22,7 +23,14 @@ function getButtonsClass(textColor: string): string {
     default:
       return "white";
   }
-};
+}
+
+async function download(dataUrl: string) {
+  // Currently this is a terrible use of resources
+  // but it's not a critical op so whatever.
+  const pngUrl = toDataUrl(await loadImage(dataUrl), "png");
+  saveDataUrl(pngUrl, "Epoch_Image.png");
+}
 
 interface Props {
   store: StoreType;
@@ -41,18 +49,10 @@ export default function Root({ store }: Props) {
     textColor = "transparent"
   } = background;
 
-  const buttonsClass = ["buttons", getButtonsClass(textColor)].join(" ");
-
-  async function onDownload() {
-    // Currently this is a terrible use of resources
-    // but it's not a critical op so whatever.
-    const pngUrl = toDataUrl(await loadImage(dataUrl), "png");
-    saveDataUrl(pngUrl, "Epoch_Image.png");
-  }
-
-  function onSettings() {
-    setVisible(true);
-  }
+  const bgClass = getBackgroundClass(textColor);
+  const buttonsClass = classnames("buttons", bgClass, {
+    visible: !visible
+  });
 
   return (
     <Fragment>
@@ -64,15 +64,19 @@ export default function Root({ store }: Props) {
         <MDCIconButton
           title="Download"
           icon="save_alt"
-          onClick={onDownload}
+          onClick={() => download(dataUrl)}
         />
         <MDCIconButton
           title="Settings"
           icon="more_vert"
-          onClick={onSettings}
+          onClick={() => setVisible(true)}
         />
       </div>
-      <Settings visible={visible} />
+      <Settings
+        visible={visible}
+        bgClass={bgClass}
+        onClick={() => setVisible(false)}
+      />
     </Fragment>
   );
 }

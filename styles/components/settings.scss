@@ -7,35 +7,72 @@
   bottom: 0;
   left: 0;
   right: 0;
+
+  display: block;
 }
 
 .settings-shade {
   z-index: $z-index-settings-shade;
-
-  background-color: $color-translucent-white;
 }
 
 .settings {
   z-index: $z-index-settings;
 }
 
-.settings-inner {
+.settings-inner {  
   overflow-x: hidden;
   overflow-y: auto;
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
   min-width: 600px;
   max-width: 80%;
   height: 70%;
+
   margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
 
-  background-color: var(--shadow-base);
+  padding: 24px;
+
   box-shadow: 0 8px 64px var(--shadow-main),
     0 64px 256px var(--shadow-secondary);
 
   font-family: $family-body;
   font-size: 16px;
-  color: white;
+
+  // Background properties.
+
+  &.black {
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+  }
+
+  &.white {
+    background-color: rgba(255,255,255,0.95);
+    color: #0d0d0d;
+  }
+
+  // Animated properties.
+
+  transition: opacity 180ms $easeInOutQuad,
+      transform 150ms $easeInOutQuad;
+
+  opacity: 0.5;
+  transform: scale(0.9);
+
+  &.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  h1 {
+    padding-top: 16px;
+
+    font-size: 72px;
+    font-weight: bold;
+    opacity: 0.6;
+  }
 }

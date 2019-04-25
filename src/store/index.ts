@@ -7,7 +7,7 @@ import State, {TimeState, BackgroundState} from "./state";
 
 import VersionedState from "./util/VersionedState";
 import createReducer, {ReducerObject} from "./util/createReducer";
-import { hhmmFromDate } from "./format";
+import { hhmmFromDate } from "./util";
 
 const reducerObj: ReducerObject = {
   // time

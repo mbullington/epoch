@@ -15,4 +15,17 @@
   &.white {
     background-color: $color-translucent-white;
   }
+
+  // Animated properties.
+
+  transition: opacity 180ms $easeInOutQuad,
+      transform 150ms $easeInOutQuad;
+
+  opacity: 0.0;
+  transform: scale(0.3) translate(0, 80px);
+
+  &.visible {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
 }
