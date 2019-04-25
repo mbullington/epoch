@@ -1,0 +1,42 @@
+// Rules for variables:
+//
+// Sass variables for anything static.
+//
+// CSS variables for anything that could change at runtime
+// or accessed from JavaScript.
+
+// Font families.
+
+$family-title: "Poppins";
+$family-body: "Space Mono";
+
+// Static colors.
+
+$color-translucent-black: rgba(0,0,0,0.3);
+$color-translucent-white: rgba(255,255,255,0.4);
+
+// Easing functions.
+
+$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+// Z-indices.
+
+$z-index-background: 20;
+$z-index-container: 30;
+
+$z-index-root: 40;
+$z-index-buttons: 50;
+
+$z-index-settings-shade: 60;
+$z-index-settings: 70;
+
+// CSS variables.
+
+:root {
+  --gradient-main: transparent;
+  --gradient-secondary: transparent;
+
+  --shadow-base: black;
+  --shadow-main: transparent;
+  --shadow-secondary: transparent;
+}

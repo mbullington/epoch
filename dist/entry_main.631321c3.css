@@ -10,10 +10,6 @@
   --shadow-base: black;
   --shadow-main: transparent;
   --shadow-secondary: transparent;
-  --family-title: "Poppins";
-  --color-translucent-black: rgba(0,0,0,0.3);
-  --color-translucent-white: rgba(255,255,255,0.4);
-  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 * {
@@ -61,7 +57,7 @@ body {
   height: 128px;
   padding: 36px;
   margin: auto;
-  transition: opacity 200ms var(--ease-in-out-quad), transform 180ms var(--ease-in-out-quad), --gradient-main 200ms var(--ease-in-out-quad), --gradient-secondary 200ms var(--ease-in-out-quad);
+  transition: opacity 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955), transform 180ms cubic-bezier(0.455, 0.03, 0.515, 0.955), --gradient-main 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955), --gradient-secondary 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
   background-image: linear-gradient(45deg, var(--gradient-main), var(--gradient-secondary));
   opacity: 1;
   transform: scale(1);
@@ -96,7 +92,7 @@ body {
 }
 
 .time {
-  font-family: var(--family-title);
+  font-family: "Poppins";
   font-size: 128px;
   line-height: 128px;
   color: white;
@@ -106,12 +102,6 @@ body {
   z-index: 40;
   display: none;
 }@font-face {
-  font-family: "Space Mono";
-  font-style: normal;
-  font-weight: normal;
-  src: local("Space Mono"), local("SpaceMono-Regular"), url("Space_Mono.68c10213.woff2") format("woff2"), url("Space_Mono.2e6d95b2.woff") format("woff"), url("Space_Mono.cab9e149.eot?#iefix") format("embedded-opentype"), url("Space_Mono.1a7b4644.svg#SpaceMono") format("svg"), url("Space_Mono.5d3c4d25.ttf") format("truetype");
-}
-@font-face {
   font-family: "Material Icons";
   font-style: normal;
   font-weight: normal;
@@ -133,6 +123,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Space Mono"), local("SpaceMono-Regular"), url("Space_Mono.68c10213.woff2") format("woff2"), url("Space_Mono.2e6d95b2.woff") format("woff"), url("Space_Mono.cab9e149.eot?#iefix") format("embedded-opentype"), url("Space_Mono.1a7b4644.svg#SpaceMono") format("svg"), url("Space_Mono.5d3c4d25.ttf") format("truetype");
+}
 .mdc-icon-button {
   width: 48px;
   height: 48px;
@@ -295,7 +291,11 @@ body {
 }
 
 :root {
-  --family-body: "Space Mono";
+  --gradient-main: transparent;
+  --gradient-secondary: transparent;
+  --shadow-base: black;
+  --shadow-main: transparent;
+  --shadow-secondary: transparent;
 }
 
 .buttons {
@@ -304,7 +304,20 @@ body {
   bottom: 24px;
   z-index: 50;
   padding: 4px;
-  background-color: var(--color-translucent-black);
+}
+.buttons.black {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.buttons.white {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+:root {
+  --gradient-main: transparent;
+  --gradient-secondary: transparent;
+  --shadow-base: black;
+  --shadow-main: transparent;
+  --shadow-secondary: transparent;
 }
 
 .settings,
@@ -318,7 +331,7 @@ body {
 
 .settings-shade {
   z-index: 60;
-  background-color: var(--color-translucent-white);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .settings {
@@ -337,7 +350,7 @@ body {
   margin-right: auto;
   background-color: var(--shadow-base);
   box-shadow: 0 8px 64px var(--shadow-main), 0 64px 256px var(--shadow-secondary);
-  font-family: var(--family-body);
+  font-family: "Space Mono";
   font-size: 16px;
   color: white;
 }

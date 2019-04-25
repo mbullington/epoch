@@ -4894,7 +4894,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./fonts/Space_Mono.woff2":[["Space_Mono.68c10213.woff2","../styles/fonts/Space_Mono.woff2"],"../styles/fonts/Space_Mono.woff2"],"./fonts/Space_Mono.woff":[["Space_Mono.2e6d95b2.woff","../styles/fonts/Space_Mono.woff"],"../styles/fonts/Space_Mono.woff"],"./fonts/Space_Mono.eot":[["Space_Mono.cab9e149.eot","../styles/fonts/Space_Mono.eot"],"../styles/fonts/Space_Mono.eot"],"./fonts/Space_Mono.svg":[["Space_Mono.1a7b4644.svg","../styles/fonts/Space_Mono.svg"],"../styles/fonts/Space_Mono.svg"],"./fonts/Space_Mono.ttf":[["Space_Mono.5d3c4d25.ttf","../styles/fonts/Space_Mono.ttf"],"../styles/fonts/Space_Mono.ttf"],"./fonts/Material_Icons.woff2":[["Material_Icons.397338f9.woff2","../styles/fonts/Material_Icons.woff2"],"../styles/fonts/Material_Icons.woff2"],"./fonts/Material_Icons.woff":[["Material_Icons.962d52e8.woff","../styles/fonts/Material_Icons.woff"],"../styles/fonts/Material_Icons.woff"],"./fonts/Material_Icons.eot":[["Material_Icons.7350c468.eot","../styles/fonts/Material_Icons.eot"],"../styles/fonts/Material_Icons.eot"],"./fonts/Material_Icons.svg":[["Material_Icons.c84246ce.svg","../styles/fonts/Material_Icons.svg"],"../styles/fonts/Material_Icons.svg"],"./fonts/Material_Icons.ttf":[["Material_Icons.b67ab1ba.ttf","../styles/fonts/Material_Icons.ttf"],"../styles/fonts/Material_Icons.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/preact/dist/preact.module.js":[function(require,module,exports) {
+},{"./fonts/Material_Icons.woff2":[["Material_Icons.397338f9.woff2","../styles/fonts/Material_Icons.woff2"],"../styles/fonts/Material_Icons.woff2"],"./fonts/Material_Icons.woff":[["Material_Icons.962d52e8.woff","../styles/fonts/Material_Icons.woff"],"../styles/fonts/Material_Icons.woff"],"./fonts/Material_Icons.eot":[["Material_Icons.7350c468.eot","../styles/fonts/Material_Icons.eot"],"../styles/fonts/Material_Icons.eot"],"./fonts/Material_Icons.svg":[["Material_Icons.c84246ce.svg","../styles/fonts/Material_Icons.svg"],"../styles/fonts/Material_Icons.svg"],"./fonts/Material_Icons.ttf":[["Material_Icons.b67ab1ba.ttf","../styles/fonts/Material_Icons.ttf"],"../styles/fonts/Material_Icons.ttf"],"./fonts/Space_Mono.woff2":[["Space_Mono.68c10213.woff2","../styles/fonts/Space_Mono.woff2"],"../styles/fonts/Space_Mono.woff2"],"./fonts/Space_Mono.woff":[["Space_Mono.2e6d95b2.woff","../styles/fonts/Space_Mono.woff"],"../styles/fonts/Space_Mono.woff"],"./fonts/Space_Mono.eot":[["Space_Mono.cab9e149.eot","../styles/fonts/Space_Mono.eot"],"../styles/fonts/Space_Mono.eot"],"./fonts/Space_Mono.svg":[["Space_Mono.1a7b4644.svg","../styles/fonts/Space_Mono.svg"],"../styles/fonts/Space_Mono.svg"],"./fonts/Space_Mono.ttf":[["Space_Mono.5d3c4d25.ttf","../styles/fonts/Space_Mono.ttf"],"../styles/fonts/Space_Mono.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/preact/dist/preact.module.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5381,14 +5381,14 @@ function x(n, r) {
 "undefined" != typeof window && (s = function (r) {
   !r.m && (r.m = !0) && 1 === u.push(r) && (_preact.options.requestAnimationFrame ? _preact.options.requestAnimationFrame(A) : requestAnimationFrame(_));
 }); //# sourceMappingURL=hooks.module.js.map
-},{"preact":"../node_modules/preact/dist/preact.module.js"}],"../src/components/SettingsPane.tsx":[function(require,module,exports) {
+},{"preact":"../node_modules/preact/dist/preact.module.js"}],"../src/components/Settings.tsx":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
 
 var preact_1 = require("preact");
 
-function SettingsPane(_a) {
+function Settings(_a) {
   var visible = _a.visible;
   var display = visible ? "block" : "none";
   return preact_1.h(preact_1.Fragment, null, preact_1.h("div", {
@@ -5406,7 +5406,7 @@ function SettingsPane(_a) {
   }, "Hello!")));
 }
 
-exports["default"] = SettingsPane;
+exports["default"] = Settings;
 },{"preact":"../node_modules/preact/dist/preact.module.js"}],"../node_modules/@material/ripple/util.js":[function(require,module,exports) {
 "use strict";
 
@@ -7273,7 +7273,44 @@ function (_super) {
 }(preact_1.Component);
 
 exports["default"] = MDCIconButton;
-},{"preact":"../node_modules/preact/dist/preact.module.js","@material/ripple":"../node_modules/@material/ripple/index.js"}],"../src/util/saveDataUrl.ts":[function(require,module,exports) {
+},{"preact":"../node_modules/preact/dist/preact.module.js","@material/ripple":"../node_modules/@material/ripple/index.js"}],"../src/components/useVersionedState.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+exports.__esModule = true;
+
+var hooks_1 = require("preact/hooks");
+
+var VersionedState_1 = __importDefault(require("../store/util/VersionedState")); // My first attempt at using React Hooks.
+
+
+function useVersionedState(store, vState, shouldUpdate) {
+  var globalKey = hooks_1.useState(VersionedState_1["default"].createGlobalKey())[0];
+
+  var _a = hooks_1.useState(vState),
+      versionedState = _a[0],
+      setVersionedState = _a[1];
+
+  hooks_1.useEffect(function () {
+    var unsubscribe = store.subscribe(function () {
+      if (vState.hasChanged(globalKey) && (shouldUpdate == null || shouldUpdate(vState))) {
+        setVersionedState(vState);
+      }
+    });
+    return function () {
+      return unsubscribe();
+    };
+  });
+  return versionedState;
+}
+
+exports["default"] = useVersionedState;
+},{"preact/hooks":"../node_modules/preact/hooks/dist/hooks.module.js","../store/util/VersionedState":"../src/store/util/VersionedState.ts"}],"../src/util/saveDataUrl.ts":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -7443,9 +7480,11 @@ var preact_1 = require("preact");
 
 var hooks_1 = require("preact/hooks");
 
-var SettingsPane_1 = __importDefault(require("./SettingsPane"));
+var Settings_1 = __importDefault(require("./Settings"));
 
 var MDCIconButton_1 = __importDefault(require("./MDCIconButton"));
+
+var useVersionedState_1 = __importDefault(require("./useVersionedState"));
 
 var loadImage_1 = __importDefault(require("../graphics/loadImage"));
 
@@ -7453,33 +7492,37 @@ var CanvasImage_1 = require("../graphics/CanvasImage");
 
 var saveDataUrl_1 = __importDefault(require("../util/saveDataUrl"));
 
-function getBackgroundColor(textColor) {
+function getButtonsClass(textColor) {
   switch (textColor) {
     case "transparent":
-      return "transparent";
+      return "";
 
     case "#fff":
-      return "--color-translucent-black";
+      return "black";
 
     case "#000":
     default:
-      return "--color-translucent-white";
+      return "white";
   }
 }
 
 ;
 
 function Root(_a) {
-  var background = _a.background;
-  var _b = background.dataUrl,
-      dataUrl = _b === void 0 ? "" : _b,
-      _c = background.textColor,
-      textColor = _c === void 0 ? "transparent" : _c;
-  var backgroundColor = getBackgroundColor(textColor);
+  var store = _a.store;
 
-  var _d = hooks_1.useState(false),
-      visible = _d[0],
-      setVisible = _d[1];
+  var _b = hooks_1.useState(false),
+      visible = _b[0],
+      setVisible = _b[1];
+
+  var background = useVersionedState_1["default"](store, store.getState().background, function (background) {
+    return background.preload !== true;
+  });
+  var _c = background.dataUrl,
+      dataUrl = _c === void 0 ? "" : _c,
+      _d = background.textColor,
+      textColor = _d === void 0 ? "transparent" : _d;
+  var buttonsClass = ["buttons", getButtonsClass(textColor)].join(" ");
 
   function onDownload() {
     return __awaiter(this, void 0, void 0, function () {
@@ -7509,10 +7552,9 @@ function Root(_a) {
   }
 
   return preact_1.h(preact_1.Fragment, null, preact_1.h("div", {
-    "class": "buttons",
+    "class": buttonsClass,
     style: {
-      color: textColor,
-      backgroundColor: backgroundColor
+      color: textColor
     }
   }, preact_1.h(MDCIconButton_1["default"], {
     title: "Favorite",
@@ -7525,13 +7567,13 @@ function Root(_a) {
     title: "Settings",
     icon: "more_vert",
     onClick: onSettings
-  })), preact_1.h(SettingsPane_1["default"], {
+  })), preact_1.h(Settings_1["default"], {
     visible: visible
   }));
 }
 
 exports["default"] = Root;
-},{"preact":"../node_modules/preact/dist/preact.module.js","preact/hooks":"../node_modules/preact/hooks/dist/hooks.module.js","./SettingsPane":"../src/components/SettingsPane.tsx","./MDCIconButton":"../src/components/MDCIconButton.tsx","../graphics/loadImage":"../src/graphics/loadImage.ts","../graphics/CanvasImage":"../src/graphics/CanvasImage.ts","../util/saveDataUrl":"../src/util/saveDataUrl.ts"}],"../src/entry_extras.tsx":[function(require,module,exports) {
+},{"preact":"../node_modules/preact/dist/preact.module.js","preact/hooks":"../node_modules/preact/hooks/dist/hooks.module.js","./Settings":"../src/components/Settings.tsx","./MDCIconButton":"../src/components/MDCIconButton.tsx","./useVersionedState":"../src/components/useVersionedState.ts","../graphics/loadImage":"../src/graphics/loadImage.ts","../graphics/CanvasImage":"../src/graphics/CanvasImage.ts","../util/saveDataUrl":"../src/util/saveDataUrl.ts"}],"../src/entry_extras.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -7551,13 +7593,10 @@ var Root_1 = __importDefault(require("./components/Root"));
 function extras(store) {
   // Show buttons, override style in main.scss
   var root = document.querySelector(".root");
-  root.style.display = "block"; // We can assume by this point the state
-  // has the image/colors we want.
-
-  var state = store.getState(); // Initialize Preact.
+  root.style.display = "block"; // Initialize Preact.
 
   preact_1.render(preact_1.h(Root_1["default"], {
-    background: state.background.clone()
+    store: store
   }), root); // Done.
 
   console.log("Extras loaded.");
@@ -7930,7 +7969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44321" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35163" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,37 +1,47 @@
 import { h, Fragment } from "preact";
 import { useState } from "preact/hooks";
 
-import SettingsPane from "./SettingsPane";
+import Settings from "./Settings";
 import MDCIconButton from "./MDCIconButton";
+import useVersionedState from "./useVersionedState";
+
+import { StoreType } from "../store";
 
 import loadImage from "../graphics/loadImage";
 import { toDataUrl } from "../graphics/CanvasImage";
 
-import { BackgroundState } from "../store/state";
-
 import saveDataUrl from "../util/saveDataUrl";
 
-function getBackgroundColor(textColor: string): string {
+function getButtonsClass(textColor: string): string {
   switch (textColor) {
     case "transparent":
-      return "transparent";
+      return "";
     case "#fff":
-      return "--color-translucent-black";
+      return "black";
     case "#000":
     default:
-      return "--color-translucent-white";
+      return "white";
   }
 };
 
 interface Props {
-  background: BackgroundState;
+  store: StoreType;
 }
 
-export default function Root({ background }: Props) {
-  const { dataUrl = "", textColor = "transparent" } = background;
-
-  const backgroundColor = getBackgroundColor(textColor);
+export default function Root({ store }: Props) {
   const [visible, setVisible] = useState(false);
+  const background = useVersionedState(
+    store,
+    store.getState().background,
+    background => background.preload !== true
+  );
+
+  const {
+    dataUrl = "",
+    textColor = "transparent"
+  } = background;
+
+  const buttonsClass = ["buttons", getButtonsClass(textColor)].join(" ");
 
   async function onDownload() {
     // Currently this is a terrible use of resources
@@ -46,7 +56,7 @@ export default function Root({ background }: Props) {
 
   return (
     <Fragment>
-      <div class="buttons" style={{ color: textColor, backgroundColor }}>
+      <div class={buttonsClass} style={{ color: textColor }}>
         <MDCIconButton
           title="Favorite"
           icon="favorite_border"
@@ -62,7 +72,7 @@ export default function Root({ background }: Props) {
           onClick={onSettings}
         />
       </div>
-      <SettingsPane visible={visible} />
+      <Settings visible={visible} />
     </Fragment>
   );
 }

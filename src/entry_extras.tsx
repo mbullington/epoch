@@ -11,12 +11,8 @@ export function extras(store: StoreType)  {
   const root = document.querySelector(".root")! as HTMLElement;
   root.style.display = "block";
 
-  // We can assume by this point the state
-  // has the image/colors we want.
-  const state = store.getState();
-
   // Initialize Preact.
-  render(<Root background={state.background.clone()} />, root);
+  render(<Root store={store} />, root);
 
   // Done.
   console.log("Extras loaded.");

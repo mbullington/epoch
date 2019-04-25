@@ -4,7 +4,7 @@ interface Props {
   visible: boolean;
 }
 
-export default function SettingsPane({visible}: Props) {
+export default function Settings({visible}: Props) {
   const display = visible ? "block" : "none";
 
   return (

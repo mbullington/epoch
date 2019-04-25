@@ -1,22 +1,6 @@
-@import "z-indexes";
-
 @import "fonts/Poppins";
 
-:root {
-    --gradient-main: transparent;
-    --gradient-secondary: transparent;
-
-    --shadow-base: black;
-    --shadow-main: transparent;
-    --shadow-secondary: transparent;
-
-    --family-title: "Poppins";
-
-    --color-translucent-black: rgba(0,0,0,0.3);
-    --color-translucent-white: rgba(255,255,255,0.4);
-
-    --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-}
+@import "variables";
 
 * {
     box-sizing: border-box;
@@ -67,10 +51,10 @@ body {
     padding: 36px;
     margin: auto;
 
-    transition: opacity 200ms var(--ease-in-out-quad),
-            transform 180ms var(--ease-in-out-quad),
-            --gradient-main 200ms var(--ease-in-out-quad),
-            --gradient-secondary 200ms var(--ease-in-out-quad);
+    transition: opacity 200ms $easeInOutQuad,
+            transform 180ms $easeInOutQuad,
+            --gradient-main 200ms $easeInOutQuad,
+            --gradient-secondary 200ms $easeInOutQuad;
     background-image: linear-gradient(45deg, var(--gradient-main), var(--gradient-secondary));
     opacity: 1;
     transform: scale(1);
@@ -110,7 +94,7 @@ body {
 }
 
 .time {
-    font-family: var(--family-title);
+    font-family: $family-title;
     font-size: 128px;
     line-height: 128px;
     color: white;
