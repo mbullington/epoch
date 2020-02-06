@@ -1,5 +1,7 @@
 @import "fonts/Material_Icons";
-@import "inter-ui/inter-hinted.css";
+
+$inter-font-path: '../node_modules/inter-ui/Inter (web hinted)';
+@import "~inter-ui/inter-hinted";
 
 @import "components/mdc-icon-button";
 @import "components/root";

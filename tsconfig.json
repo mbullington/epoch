@@ -6,7 +6,7 @@
     "paths": {
       "util/*": ["src/util/*"]
     },
-    "types": ["node-vibrant", "classnames"],
+    "types": ["node-vibrant", "classnames", "chrome"],
     "esModuleInterop": true,
     "jsx": "react",
     "jsxFactory": "h"

@@ -1,11 +1,15 @@
 export default function saveDataUrl(dataUrl: string, filename: string) {
+  if (browser.downloads) {
+
+  }
+
   const link = document.createElement("a");
-
-  link.setAttribute("href", dataUrl);
-  link.setAttribute("target", "_blank");
-  link.setAttribute("download", filename);
-
+  link.style.display = "none";
   document.body.appendChild(link);
+
+  link.href = dataUrl;
+  link.setAttribute("download", filename);
   link.click();
-  link.remove();
+
+  document.body.removeChild(link);
 }

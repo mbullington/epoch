@@ -6,7 +6,8 @@
     "newtab": "dist/index.html"
   },
   "permissions": [
-    "bookmarks"
+    "bookmarks",
+    "downloads"
   ],
   "manifest_version": 2
 }

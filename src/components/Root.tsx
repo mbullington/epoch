@@ -26,6 +26,8 @@ function getBackgroundClass(textColor: string): string {
 }
 
 async function download(dataUrl: string) {
+  console.log('Downloading image')
+
   // Currently this is a terrible use of resources
   // but it's not a critical op so whatever.
   const pngUrl = toDataUrl(await loadImage(dataUrl), "png");
@@ -57,10 +59,6 @@ export default function Root({ store }: Props) {
   return (
     <Fragment>
       <div class={buttonsClass} style={{ color: textColor }}>
-        <MDCIconButton
-          title="Favorite"
-          icon="favorite_border"
-        />
         <MDCIconButton
           title="Download"
           icon="save_alt"
