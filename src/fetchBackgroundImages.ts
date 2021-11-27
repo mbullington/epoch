@@ -39,17 +39,25 @@ export async function fetchBackgroundImages(): Promise<string> {
     return `/images/offline_${Math.floor(Math.random() * 3) + 1}.jpg`;
   }
 
-  const response = await fetch(URL);
-  const [current, prefetch] = (await response.json()) as APIItem[];
+  const promise = Promise.resolve().then(async () => {
+    const response = await fetch(URL);
+    const [current, prefetch] = (await response.json()) as APIItem[];
 
-  // Have the browser fetch the next image in the background.
-  const linkPrefetch = document.createElement("link");
-  linkPrefetch.rel = "prefetch";
-  linkPrefetch.href = prefetch.urls.full;
-  document.head.appendChild(linkPrefetch);
+    // Have the browser fetch the next image in the background.
+    const linkPrefetch = document.createElement("link");
+    linkPrefetch.rel = "prefetch";
+    linkPrefetch.href = prefetch.urls.full;
+    document.head.appendChild(linkPrefetch);
 
-  localStorage.setItem(STORAGE_KEY, prefetch.urls.full);
-  localStorage.setItem(TIMESTAMP_KEY, Date.now().toString());
+    localStorage.setItem(STORAGE_KEY, prefetch.urls.full);
+    localStorage.setItem(TIMESTAMP_KEY, Date.now().toString());
 
-  return current.urls.full;
+    return current.urls.full;
+  });
+
+  if (!storedImage) {
+    return await promise;
+  }
+
+  return storedImage;
 }
