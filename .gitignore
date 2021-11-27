@@ -44,4 +44,5 @@ jspm_packages
 
 dist/
 epoch.crx
+epoch.zip
 key.pem
