@@ -4,32 +4,21 @@
   "description": "A (new) tab page.",
   "author": "Michael Bullington <mikebullingtn@gmail.com>",
   "scripts": {
-    "start": "parcel watch web/index.html --public-url . --no-source-maps --no-cache",
-    "build": "parcel build web/index.html --public-url . --no-source-maps"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@material/icon-button": "^1.1.0",
-    "classnames": "^2.2.6",
-    "gamblers-dice": "^1.0.1",
-    "inter-ui": "^3.5.0",
-    "localforage": "^1.7.3",
-    "node-vibrant": "https://github.com/mbullington/node-vibrant.git",
-    "preact": "^10.0.0-rc.0",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "classnames": "^2.3.1",
+    "localforage": "^1.10.0",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-0",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
-    "@types/classnames": "^2.2.7",
-    "@types/chrome": "^0.0.86",
-    "babel-preset-env": "^1.7.0",
-    "node-sass": "^4.11.0",
-    "parcel-bundler": "^1.12.3",
-    "sass": "^1.19.0",
-    "tsconfig-palmerhq": "^1.0.2",
-    "typescript": "^3.4.5"
+    "@types/chrome": "^0.0.164",
+    "@types/classnames": "^2.3.1",
+    "sass": "^1.43.5",
+    "typescript": "^4.5.2",
+    "vite": "^2.6.14"
   }
 }

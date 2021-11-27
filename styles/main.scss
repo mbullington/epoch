@@ -1,16 +1,26 @@
 @import "fonts/Poppins";
 
-@import "variables";
+:root {
+    // Font families.
+    --family-title: "Poppins";
+
+    // Static colors.
+    --color-translucent-black: rgba(17, 16, 16, 0.3);
+    --color-translucent-white: rgba(255,255,255,0.4);
+
+    // Easing functions.
+    --easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+    // Z-indices.
+    --z-index-background: 20;
+    --z-index-container: 30;
+}
 
 * {
     box-sizing: border-box;
-    all: unset;
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-}
-
-base, basefont, datalist, head, meta, script, style, title, noembed, param, template {
-    display: none;
 }
 
 html,
@@ -20,15 +30,13 @@ body,
     height: 100%;
     padding: 0;
     margin: 0;
+    background-color: #2d2d2d;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    transition: opacity 300ms ease-in;
-    opacity: 0;
 }
 
 .background {
@@ -37,13 +45,13 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: $z-index-background;
+    z-index: var(--z-index-background);
 
     background-size: cover;
 }
 
 .container {
-    z-index: $z-index-container;
+    z-index: var(--z-index-container);
 
     display: inline-flex;
     flex-direction: row;
@@ -51,16 +59,10 @@ body {
     padding: 36px;
     margin: auto;
 
-    transition: opacity 200ms $easeInOutQuad,
-            transform 180ms $easeInOutQuad,
-            --gradient-main 200ms $easeInOutQuad,
-            --gradient-secondary 200ms $easeInOutQuad;
-    background-image: linear-gradient(45deg, var(--gradient-main), var(--gradient-secondary));
+    transition: opacity 200ms var(--easeInOutQuad),
+            transform 180ms var(--easeInOutQuad);
     opacity: 1;
     transform: scale(1);
-    
-    box-shadow: 0 4px 32px var(--shadow-main),
-        0 32px 128px var(--shadow-secondary);
 
     &:hover {
         opacity: 0.8;
@@ -94,15 +96,8 @@ body {
 }
 
 .time {
-    font-family: $family-title;
+    font-family: var(--family-title);
     font-size: 128px;
     line-height: 128px;
     color: white;
-}
-
-.root {
-    z-index: $z-index-root;
-
-    // Overwritten in entry_extras.ts
-    display: none;
 }

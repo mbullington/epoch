@@ -5,20 +5,20 @@ export function toStringClock(time: number): string {
 }
 
 export function hhmmFromDate(date: Date): [string, string] {
-  const hours = date.getHours();
+  let hours = date.getHours() % 12;
+  if (hours === 0) {
+    hours = 12;
+  }
   const minutes = date.getMinutes();
 
-  return [
-    toStringClock(hours),
-    toStringClock(minutes)
-  ];
+  return [toStringClock(hours), toStringClock(minutes)];
 }
 
 // Timing utils.
 
-export function everySecond(callback: Function): Function {
+export function everySecond(callback: () => void): () => void {
   let cancelled = false;
-  let lastTime = 0;  
+  let lastTime = 0;
 
   function timeLoop(now: number) {
     if (now - lastTime > 1000) {
@@ -33,12 +33,13 @@ export function everySecond(callback: Function): Function {
     requestAnimationFrame(timeLoop);
   }
 
-  requestAnimationFrame(timeLoop);  
-  return () => (cancelled = true);  
+  requestAnimationFrame(timeLoop);
+  callback();
+  return () => (cancelled = true);
 }
 
-export function everyMinute(callback: Function): Function {
-  let cancelled = false;  
+export function everyMinute<T>(callback: () => void): () => void {
+  let cancelled = false;
 
   function timeLoop(duration: number) {
     setTimeout((_: number) => {
@@ -54,5 +55,6 @@ export function everyMinute(callback: Function): Function {
   }
 
   timeLoop(0);
+  callback();
   return () => (cancelled = true);
 }
