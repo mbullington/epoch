@@ -68,6 +68,8 @@ body {
         opacity: 0.8;
         transform: scale(0.97);
     }
+
+    text-shadow: 0 4px 16px var(--color-translucent-black);
 }
 
 .divider {
@@ -88,6 +90,8 @@ body {
     transition: 300ms ease-in-out;
     opacity: 1;
     transform: scale(1);
+
+    box-shadow: 0 4px 16px var(--color-translucent-black);
 
     &.dim {
         opacity: 0.6;
