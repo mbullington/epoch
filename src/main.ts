@@ -31,6 +31,6 @@ everyMinute(() => {
   nodes.minutes.innerHTML = minutes;
 });
 
-await fetchBackgroundImages().then((image: string) => {
+fetchBackgroundImages().then((image: string) => {
   nodes.background.src = image;
 });
