@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Beautiful new-tab page.",
   "chrome_url_overrides": {
-    "newtab": "index.html"
+    "newtab": "./index.html"
   },
-  "permissions": ["bookmarks", "downloads"],
   "manifest_version": 2
 }
