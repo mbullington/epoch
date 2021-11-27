@@ -1,4 +1,6 @@
 const PARAMS = Object.entries({
+  // Right now this key only allows 50 images an hour, barely enough for myself!
+  // Please get your own!
   client_id: "y9rCIMBNIqVnQV9bUgWMtXWFgXux2qJai5XRclAC9Wc",
   // Unsplash Editorial.
   collections: "317099",
